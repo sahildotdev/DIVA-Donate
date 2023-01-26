@@ -14,7 +14,6 @@ export const FeatureSection = () => (
         </p>
         <InfoCard
           cardWidth="w-[23rem]"
-          cardHeight="h-42"
           title="Transparent"
           paragraph="Donation flows are transparent and auditable on the blockchain"
           paragraphColor="text-[#042940]"
@@ -25,7 +24,6 @@ export const FeatureSection = () => (
         <div className="grid lg:grid-cols-2 gap-10">
           <InfoCard
             cardWidth="w-[23rem]"
-            cardHeight="h-42"
             title="Trustless"
             paragraph="Funds are held in an programmatic escrow eliminating the risk of misuse and fraud"
             paragraphColor="text-[#042940]"
@@ -36,7 +34,6 @@ export const FeatureSection = () => (
 
           <InfoCard
             cardWidth="w-[23rem]"
-            cardHeight="h-42"
             title="Efficient"
             paragraph="Programmatically enforced rules remove the need for manual processes"
             paragraphColor="text-[#042940]"

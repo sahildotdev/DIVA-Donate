@@ -1,7 +1,13 @@
+import Image from "next/image";
+
 export const Logo = () => {
   return (
-    <span className="text-lg">
-      Super<span className="font-bold">Defi</span>
-    </span>
+    <Image
+      className="w-full"
+      width="800"
+      height="800"
+      src="/Images/donate-logo-dark.png"
+      alt="Modern building architecture"
+    />
   );
 };
