@@ -1,27 +1,29 @@
 import { Logo } from "../Logo";
 import Link from "next/link";
+import React from "react";
 
 import { useState } from "react";
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
+  const [color, changeColor] = useState("#042940");
 
   return (
     <nav className="px-2 sm:px-4 py-2.5 fixed z-20 w-full top-0 left-0 bg-[#F3FDF8] border-b-2 border-[#D6D58E]">
-      <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+      <div className="justify-between px-4 mx-auto lg:max-w-screen-2xl md:items-center md:flex md:px-8">
         <div>
-          <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <a href="javascript:void(0)">
+          <div className="flex items-center outline-none justify-between py-3 md:py-5 md:block">
+            <Link href="/">
               <Logo />
-            </a>
+            </Link>
             <div className="md:hidden">
               <button
-                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                className=" text-gray-700 rounded-md outline-none -my-1 ml-6 -mr-1 flex h-9 w-9 items-center justify-center lg:hidden"
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
                   <svg
-                    className="w-6 h-6"
+                    className="w-8 h-8"
                     aria-hidden="true"
                     fill="currentColor"
                     viewBox="0 0 20 20"
@@ -60,18 +62,19 @@ export default function NavBar() {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="block py-2 pl-3 pr-4 text-base font-semibold text-[#042940] rounded md:bg-transparent md:text-blue-700 md:p-0"
-                  aria-current="page"
+                  onClick={() => changeColor("#042940")}
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
                 <Link
                   href="/campaign"
                   className="block py-2 pl-3 pr-4 text-base font-semibold text-[#042940] rounded md:p-0"
+                  onClick={() => changeColor("#042940")}
                 >
                   Campaigns
                 </Link>
@@ -103,22 +106,66 @@ export default function NavBar() {
             </ul>
 
             <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-              <a
+              {/*<a
                 href="javascript:void(0)"
                 className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
               >
                 Connect Wallet
-              </a>
+              </a>*/}
+              <button
+                type="button"
+                data-modal-target="crypto-modal"
+                className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-4 h-4 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                  ></path>
+                </svg>
+                Connect wallet
+              </button>
             </div>
           </div>
         </div>
-        <div className="hidden space-x-2 md:inline-block">
-          <a
+        <div className="hidden space-x-2 md:hidden lg:inline-block">
+          {/*<a
             href="javascript:void(0)"
             className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
           >
             Connect Wallet
-          </a>
+          </a>*/}
+          <button
+            type="button"
+            data-modal-target="crypto-modal"
+            className="text-white bg-[#042940] rounded-md font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+          >
+            <svg
+              aria-hidden="true"
+              className="w-4 h-4 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+              ></path>
+            </svg>
+            Connect wallet
+          </button>
         </div>
       </div>
     </nav>

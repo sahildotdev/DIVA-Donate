@@ -6,7 +6,7 @@ import { Logo } from "../Logo";
 export default function HeroSection() {
   return (
     <section className="bg-[#F3FDF8]">
-      <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
+      <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] flex flex-col justify-center mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
         <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
           <h1 className="text-4xl font-bold text-[#042940] font-['lora'] tracking-tight sm:text-6xl">
             Event-Driven
