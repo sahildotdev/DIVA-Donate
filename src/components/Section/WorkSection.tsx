@@ -46,12 +46,21 @@ export const WorkSection = () => (
     <hr className="w-48 h-[8px] bg-[#9FC131] border-0 rounded-[20px] mx-auto" />
     <div className="bg-deep-purple-accent-700">
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-        <div className="flex flex-col mb-16 sm:text-center sm:mb-0">
+        <div className="flex flex-col mb-16 sm:text-center sm:hidden md:hidden lg:block xl:block 2xl:block sm:mb-0">
           <Image
             className="w-full"
             width="800"
             height="800"
             src="/Images/how-it-works-web.png"
+            alt="Modern building architecture"
+          />
+        </div>
+        <div className="sm:block md:block lg:hidden xl:hidden 2xl:hidden flex flex-col mb-16 sm:text-center sm:mb-0">
+          <Image
+            className="w-full"
+            width="800"
+            height="800"
+            src="/Images/how-it-works-mobile.png"
             alt="Modern building architecture"
           />
         </div>

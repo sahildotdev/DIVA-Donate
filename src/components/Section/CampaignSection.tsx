@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export const CampaignSection = () => (
   <div className="flex flex-col">
@@ -109,13 +110,14 @@ export const CampaignSection = () => (
             <dd className="font-normal text-base text-[#042940] ">$8,250</dd>
           </div>
         </div>
-
-        <button
-          type="button"
-          className="text-white bg-[#042940] hover:bg-blue-700 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
-        >
-          View Campings
-        </button>
+        <Link href="/campaign">
+          <button
+            type="button"
+            className="text-white bg-[#042940] hover:bg-blue-700 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
+          >
+            View Campings
+          </button>
+        </Link>
       </div>
     </div>
   </div>

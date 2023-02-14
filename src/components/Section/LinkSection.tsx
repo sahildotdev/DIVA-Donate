@@ -56,7 +56,7 @@ export const LinkSection = () => (
       <div>
         <a
           href="#"
-          className="group block max-w-3xl mx-auto rounded-lg p-6 bg-white space-y-3"
+          className="group block max-w-2xl mx-auto rounded-lg p-6 bg-white space-y-3"
         >
           <div className="flex items-center space-x-3">
             <svg
@@ -99,7 +99,7 @@ export const LinkSection = () => (
       <div>
         <a
           href="#"
-          className="group block max-w-3xl mx-auto rounded-lg p-6 bg-white space-y-3"
+          className="group block max-w-2xl mx-auto rounded-lg p-6 bg-white space-y-3"
         >
           <div className="flex items-center space-x-3">
             <svg

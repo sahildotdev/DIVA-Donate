@@ -1,12 +1,15 @@
 import { Logo } from "../Logo";
 import Link from "next/link";
 import React from "react";
-
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { NavbarLinks } from "./NavbarLinks";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
-  const [color, changeColor] = useState("#042940");
+  const { pathname } = useRouter();
+  console.log("pathname:", pathname);
 
   return (
     <nav className="px-2 sm:px-4 py-2.5 fixed z-20 w-full top-0 left-0 bg-[#F3FDF8] border-b-2 border-[#D6D58E]">
@@ -60,59 +63,10 @@ export default function NavBar() {
               navbar ? "block" : "hidden"
             }`}
           >
-            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              <li>
-                <Link
-                  href="/"
-                  className="block py-2 pl-3 pr-4 text-base font-semibold text-[#042940] rounded md:bg-transparent md:text-blue-700 md:p-0"
-                  onClick={() => changeColor("#042940")}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/campaign"
-                  className="block py-2 pl-3 pr-4 text-base font-semibold text-[#042940] rounded md:p-0"
-                  onClick={() => changeColor("#042940")}
-                >
-                  Campaigns
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pl-3 pr-4 text-base font-semibold text-[#042940] rounded md:p-0"
-                >
-                  My Donations
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pl-3 pr-4 text-base font-semibold text-[#042940] rounded md:p-0"
-                >
-                  My Campaigns
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 pl-3 pr-4 text-base font-semibold text-[#042940] rounded md:p-0"
-                >
-                  FAQs
-                </a>
-              </li>
-            </ul>
-
+            <NavbarLinks activePath={pathname} />
             <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-              {/*<a
-                href="javascript:void(0)"
-                className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-              >
-                Connect Wallet
-              </a>*/}
-              <button
+              <ConnectButton />
+              {/* <button
                 type="button"
                 data-modal-target="crypto-modal"
                 className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700"
@@ -133,18 +87,19 @@ export default function NavBar() {
                   ></path>
                 </svg>
                 Connect wallet
-              </button>
+              </button>*/}
             </div>
           </div>
         </div>
         <div className="hidden space-x-2 md:hidden lg:inline-block">
+          <ConnectButton />
           {/*<a
             href="javascript:void(0)"
             className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
           >
             Connect Wallet
           </a>*/}
-          <button
+          {/* <button
             type="button"
             data-modal-target="crypto-modal"
             className="text-white bg-[#042940] rounded-md font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
@@ -165,7 +120,7 @@ export default function NavBar() {
               ></path>
             </svg>
             Connect wallet
-          </button>
+          </button>*/}
         </div>
       </div>
     </nav>
