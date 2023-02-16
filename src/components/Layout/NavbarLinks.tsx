@@ -29,7 +29,6 @@ const links = [
 ];
 
 export const NavbarLinks = ({ activePath }: NavbarLinksProps) => {
-  console.log("activePath:", activePath);
   return (
     <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
       {links.map((link) => (
@@ -37,7 +36,7 @@ export const NavbarLinks = ({ activePath }: NavbarLinksProps) => {
           <Link
             href={link.to}
             className={`block py-2 pl-3 pr-4 text-base font-semibold  ${
-              activePath === link.to ? "text-blue-800" : "text-[#042940]"
+              activePath === link.to ? "text-[#9FC131] " : "text-[#042940]"
             } rounded md:p-0`}
           >
             {link.name}

@@ -1,15 +1,34 @@
 import Link from "next/link";
 import { useState } from "react";
-import Modal from "../Layout/Modal";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import {
+  useERC20Contract,
+  useDivaContract,
+} from "../../utils/hooks/useContract";
+import { getTokenBalance, valueFormatter } from "../../utils/general";
 
 export const CampaingCard = () => {
-  const [isOpen, setOpen] = useState(false);
+  const [balance, setBalance] = useState(0);
 
-  const handleDropDown = () => {
-    setOpen(!isOpen);
+  const collateralTokenAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
+  const divaContractAddress = "0xFf7d52432B19521276962B67FFB432eCcA609148";
+
+  const walletAddress = "0x0Aa30E5363f2b432D44e6a40Fc6a6A218dC5B484";
+
+  const usdtTokenContract = useERC20Contract(collateralTokenAddress, true);
+
+  const divaContract = useDivaContract(divaContractAddress, true);
+  console.log("divaContract:", divaContract);
+
+  const getBalance = async () => {
+    const result = await getTokenBalance(usdtTokenContract, walletAddress);
+    const tokenAmount = valueFormatter(
+      result.balance / Math.pow(10, result.decimals),
+      3
+    );
+    setBalance(tokenAmount);
   };
 
+  getBalance();
   return (
     <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] justify-center mx-auto px-4">
       <div className="grid px-4 py-8 mx-auto gap-auto lg:py-16 lg:grid-cols-12">
@@ -94,21 +113,13 @@ export const CampaingCard = () => {
                         className="block w-full p-4 pl-10 text-lg border border-[#042940] focus:outline-none text-gray-900 rounded-[10px] bg-[rgba(4, 41, 64, 0.24)]"
                         required
                       />
-                      <div className="absolute right-2 bottom-2.5 inline-flex ">
-                        <ConnectButton />
-                      </div>
                     </div>
                   </form>
                 </div>
                 <div className="mb-3">
-                  {/*<Link href={}>*/}
                   <p className="font-normal text-base font-['Open_Sans'] text-right text-[#042940]">
-                    Available balance
+                    Available balance:&nbsp;{balance}
                   </p>
-                  {/*</Link>*/}
-                </div>
-                <div>
-                  <Modal />
                 </div>
               </div>
             </div>

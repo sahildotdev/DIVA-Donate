@@ -4,12 +4,13 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
-import { infuraProvider } from "wagmi/providers/infura";
+import { alchemyProvider } from "wagmi/providers/alchemy";
 
 const { chains, provider } = configureChains(
   [mainnet, polygon, optimism, arbitrum],
-  [infuraProvider({ apiKey: "ee4b02dbb2404bc1aa0b6739d9b8589c" })]
+  [alchemyProvider({ apiKey: "p3-IGmZPQrd-ri5AGlGm4cVm8k1uhCXx" })]
 );
+
 const { connectors } = getDefaultWallets({
   appName: "Diva Donate",
   chains,
@@ -23,7 +24,7 @@ const wagmiClient = createClient({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
+      <RainbowKitProvider chains={chains} initialChain={mainnet}>
         <Component {...pageProps} />
       </RainbowKitProvider>
     </WagmiConfig>

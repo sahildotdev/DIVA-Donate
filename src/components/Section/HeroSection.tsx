@@ -8,12 +8,12 @@ export default function HeroSection() {
     <section className="bg-[#F3FDF8]">
       <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] flex flex-col justify-center mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
         <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
-          <h1 className="text-4xl font-bold text-[#042940] font-['lora'] tracking-tight sm:text-6xl">
+          <h1 className="text-8xl font-semibold text-[#042940] font-['lora'] sm:text-6xl">
             Event-Driven
             <br /> Conditional
             <br /> Donations
           </h1>
-          <p className="mt-6 text-lg font-['Open Sans'] leading-8 text-[#005C53] ">
+          <p className="mt-6 text-lg font-['Open Sans'] text-[#005C53] ">
             A novel donation model enabled by blockchain technology
             <br />
             <p className="font-['Open Sans'] text-[#042940]">
