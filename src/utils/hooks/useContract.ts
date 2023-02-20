@@ -2,9 +2,10 @@ import { useMemo } from "react";
 import { Contract, ethers } from "ethers";
 
 import { DivaABI, ERC20ABI } from "../../abi";
-import { getContract } from "../general";
+import {getContract, getSigner} from "../general";
 import { useAccount } from "wagmi";
 import {Provider} from "@ethersproject/abstract-provider";
+import {EtherscanProvider} from "@ethersproject/providers";
 
 function useContract<T extends Contract = Contract>(
   address: string | undefined,
@@ -35,18 +36,27 @@ function useContract<T extends Contract = Contract>(
 export function useERC20Contract(
   contractAddress: string
 ): any {
-
-  console.log(typeof window === "undefined")
-  const provider: any = ethers.getDefaultProvider('matic');
-  console.log("provider", provider)
-
-  return new ethers.Contract(contractAddress, ERC20ABI, provider);
+  const { address: activeAddress } = useAccount();
+  // const provider: any =
+  //     new ethers.providers.AlchemyProvider(
+  //     "matic",
+  //     "p3-IGmZPQrd-ri5AGlGm4cVm8k1uhCXx" // Should be replaced by env variable
+  // );
+  //
+  // const provider = new EtherscanProvider("matic", "V7R1QM3PC1PVFP6GEJKRBI669HPKX9ZKIE")
+  // console.log("provider", provider)
+  if (typeof window != 'undefined') {
+    // running on client and window + ethereum is avail
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    return new ethers.Contract(contractAddress, ERC20ABI, provider?.getSigner());
+  }
 
 }
 
-export function useDivaContract(
-  contractAddress: string,
-  withSignerIfPossible?: boolean
-): any {
-  return useContract(contractAddress, DivaABI, withSignerIfPossible);
+export function useDivaContract(): any {
+  if (typeof window != 'undefined') {
+    // running on client and window + ethereum is avail
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    return new ethers.Contract('0xFf7d52432B19521276962B67FFB432eCcA609148', DivaABI, provider?.getSigner());
+  }
 }

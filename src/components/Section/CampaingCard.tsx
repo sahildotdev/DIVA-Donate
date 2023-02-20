@@ -6,41 +6,86 @@ import {
 } from "../../utils/hooks/useContract";
 import {getSigner, getTokenBalance, valueFormatter} from "../../utils/general";
 import {ethers} from "ethers";
-import {parseUnits} from "ethers/lib/utils";
-import {useAccount} from "wagmi";
+import {formatEther, formatUnits, parseEther, parseUnits} from "ethers/lib/utils";
+import {useAccount, useFeeData} from "wagmi";
+import {DivaABI} from "../../abi";
 
 export const CampaingCard = () => {
   const [balance, setBalance] = useState(0);
+  const { data, isError, isLoading } = useFeeData({chainId:137})
   const [amount, setAmount] = useState<number>();
+  const [goal, setGoal] = useState<number>(0);
+  const [raised, setRaised] = useState<number>(0);
+  const [toGo, setToGo] = useState<number>(0);
+  const [percentage, setPercentage] = useState<number>(0);
   const collateralTokenAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
   const divaContractAddress = "0xFf7d52432B19521276962B67FFB432eCcA609148";
   const { address: activeAddress } = useAccount();
-
+  const [decimals, setDecimals] = useState(0);
   const walletAddress = "0x0Aa30E5363f2b432D44e6a40Fc6a6A218dC5B484";
-
   const usdtTokenContract = useERC20Contract(collateralTokenAddress);
 
-  const divaContract = useDivaContract(divaContractAddress, true);
+  useEffect(() => {
+    const getDecimals = async () => {
+        if (usdtTokenContract != null) {
+            const decimals = await usdtTokenContract.decimals();
+            setDecimals(decimals);
+        }
+    }
+    getDecimals();
+  },[])
+  useEffect(() => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const divaContract = new ethers.Contract('0xFf7d52432B19521276962B67FFB432eCcA609148', DivaABI, provider.getSigner());
+    divaContract.getPoolParameters(1).then((res) => {
+      console.log(res)
+      console.log('goal', formatUnits(res.capacity, decimals))
+      console.log('raised', formatUnits(res.collateralBalance, decimals))
+      console.log('to go', formatUnits(res.capacity.sub(res.collateralBalance), decimals))
+      setGoal(Number(formatUnits(res.capacity, decimals)));
+      setRaised(Number(formatUnits(res.collateralBalance, decimals)));
+      setToGo(Number(formatUnits(res.capacity.sub(res.collateralBalance), decimals)));
+    })
+  }, [decimals])
 
   const handleDonation = async () => {
     if (amount != null) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      const divaContract = new ethers.Contract('0xFf7d52432B19521276962B67FFB432eCcA609148', DivaABI, provider.getSigner());
+      console.log(data)
+      console.log(formatEther(data?.gasPrice))
+      console.log(formatEther(data?.maxFeePerGas))
       const decimals = await usdtTokenContract.decimals();
-      console.log(activeAddress)
-      usdtTokenContract.approve(divaContractAddress, parseUnits(amount!.toString(), decimals)).then(
-          (tx) => {
-            tx.wait().then(() => {
-              divaContract.addLiquidty('1', parseUnits(amount!.toString(), decimals), activeAddress, walletAddress).then(
-                  (tx) => {
-                    tx.wait().then(() => {
-                      console.log('success');
-                    })
+      const allowance = await usdtTokenContract.allowance(activeAddress, divaContractAddress);
+      console.log(formatUnits(allowance,decimals));
+      if (allowance < parseUnits(amount!.toString(), decimals)) {
+        usdtTokenContract.approve(divaContractAddress, parseUnits(amount!.toString(), decimals),{gasPrice: data?.gasPrice})
+            .then(
+                (tx) => {
+                  tx.wait().then(() => {
+                    divaContract.addLiquidity(1, parseUnits(amount!.toString(), decimals), activeAddress, walletAddress,{gasPrice: data?.maxFeePerGas}).then(
+                        (tx) => {
+                          tx.wait().then(() => {
+                            console.log('success');
+                          })
+                        })
+                  }).catch((err) => {
+                    console.log(err);
                   })
+                }).catch((err) => {
+          console.log(err);
+        })
+      } else {
+        divaContract.addLiquidity(1, parseUnits(amount!.toString(), decimals), activeAddress, walletAddress,{gasPrice: data?.maxFeePerGas}).then(
+            (tx) => {
+              tx.wait().then(() => {
+                console.log('success');
+              })
             }).catch((err) => {
-              console.log(err);
-            })
-          }).catch((err) => {
-        console.log(err);
-      })
+          console.log(err);
+        })
+      }
+
     }
   }
   const handleMax = () => {
@@ -96,9 +141,9 @@ export const CampaingCard = () => {
                 </div>
 
                 <div className="mb-10 w-full bg-[#D6D58E] rounded-[10px]">
-                  <div className="bg-[#005C53] text-xs w-[45%] font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full">
+                  <div className={'bg-[#005C53] text-xs w-['+ (raised / goal * 100) +'%] font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full'}>
                     {" "}
-                    45%
+                    {raised / goal * 100}%
                   </div>
                 </div>
 
@@ -108,7 +153,7 @@ export const CampaingCard = () => {
                       Goal
                     </dt>
                     <dd className="font-normal text-base text-[#042940] ">
-                      $15,000
+                      ${goal}
                     </dd>
                   </div>
                   <div className="flex flex-col items-center justify-center">
@@ -116,7 +161,7 @@ export const CampaingCard = () => {
                       Raised
                     </dt>
                     <dd className="font-normal text-base text-[#042940] ">
-                      $6,750
+                      ${raised}
                     </dd>
                   </div>
                   <div className="flex flex-col items-center justify-center">
@@ -124,7 +169,7 @@ export const CampaingCard = () => {
                       To go
                     </dt>
                     <dd className="font-normal text-base text-[#042940] ">
-                      $8,250
+                      ${toGo}
                     </dd>
                   </div>
                 </div>
