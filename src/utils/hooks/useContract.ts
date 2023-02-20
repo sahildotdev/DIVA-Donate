@@ -4,6 +4,7 @@ import { Contract, ethers } from "ethers";
 import { DivaABI, ERC20ABI } from "../../abi";
 import { getContract } from "../general";
 import { useAccount } from "wagmi";
+import {Provider} from "@ethersproject/abstract-provider";
 
 function useContract<T extends Contract = Contract>(
   address: string | undefined,
@@ -32,10 +33,15 @@ function useContract<T extends Contract = Contract>(
 }
 
 export function useERC20Contract(
-  contractAddress: string,
-  withSignerIfPossible?: boolean
+  contractAddress: string
 ): any {
-  return useContract(contractAddress, ERC20ABI, withSignerIfPossible);
+
+  console.log(typeof window === "undefined")
+  const provider: any = ethers.getDefaultProvider('matic');
+  console.log("provider", provider)
+
+  return new ethers.Contract(contractAddress, ERC20ABI, provider);
+
 }
 
 export function useDivaContract(

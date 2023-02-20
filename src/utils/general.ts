@@ -45,12 +45,14 @@ export function getContract(
 }
 
 export async function getTokenBalance(contract: Contract, address: string) {
-  const balance = await contract.balanceOf(address);
-  const decimals = await contract.decimals();
-  return {
-    balance: balance,
-    decimals: decimals,
-  };
+  if (contract !== null) {
+    const balance = await contract.balanceOf(address);
+    const decimals = await contract.decimals();
+    return {
+      balance: balance,
+      decimals: decimals,
+    };
+  }
 }
 
 export const valueFormatter = (num: number, decimalPlaces: number) =>

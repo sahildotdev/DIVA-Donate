@@ -1,34 +1,68 @@
 import Link from "next/link";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {
   useERC20Contract,
   useDivaContract,
 } from "../../utils/hooks/useContract";
-import { getTokenBalance, valueFormatter } from "../../utils/general";
+import {getSigner, getTokenBalance, valueFormatter} from "../../utils/general";
+import {ethers} from "ethers";
+import {parseUnits} from "ethers/lib/utils";
+import {useAccount} from "wagmi";
 
 export const CampaingCard = () => {
   const [balance, setBalance] = useState(0);
-
+  const [amount, setAmount] = useState<number>();
   const collateralTokenAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
   const divaContractAddress = "0xFf7d52432B19521276962B67FFB432eCcA609148";
+  const { address: activeAddress } = useAccount();
 
   const walletAddress = "0x0Aa30E5363f2b432D44e6a40Fc6a6A218dC5B484";
 
-  const usdtTokenContract = useERC20Contract(collateralTokenAddress, true);
+  const usdtTokenContract = useERC20Contract(collateralTokenAddress);
 
   const divaContract = useDivaContract(divaContractAddress, true);
-  console.log("divaContract:", divaContract);
+
+  const handleDonation = async () => {
+    if (amount != null) {
+      const decimals = await usdtTokenContract.decimals();
+      console.log(activeAddress)
+      usdtTokenContract.approve(divaContractAddress, parseUnits(amount!.toString(), decimals)).then(
+          (tx) => {
+            tx.wait().then(() => {
+              divaContract.addLiquidty('1', parseUnits(amount!.toString(), decimals), activeAddress, walletAddress).then(
+                  (tx) => {
+                    tx.wait().then(() => {
+                      console.log('success');
+                    })
+                  })
+            }).catch((err) => {
+              console.log(err);
+            })
+          }).catch((err) => {
+        console.log(err);
+      })
+    }
+  }
+  const handleMax = () => {
+    if (balance != null){
+      setAmount(balance);
+    }
+  }
+  const handleAmountChange = (e) => {
+        setAmount(e.target.value);
+  }
 
   const getBalance = async () => {
-    const result = await getTokenBalance(usdtTokenContract, walletAddress);
-    const tokenAmount = valueFormatter(
-      result.balance / Math.pow(10, result.decimals),
-      3
-    );
-    setBalance(tokenAmount);
+      const result = await getTokenBalance(usdtTokenContract, walletAddress);
+      const tokenAmount = valueFormatter(
+          result?.balance / Math.pow(10, result?.decimals),
+          3
+      );
+      setBalance(tokenAmount);
   };
-
-  getBalance();
+  useEffect(() => {
+    getBalance();
+  }, []);
   return (
     <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] justify-center mx-auto px-4">
       <div className="grid px-4 py-8 mx-auto gap-auto lg:py-16 lg:grid-cols-12">
@@ -102,17 +136,48 @@ export const CampaingCard = () => {
 
                 <div>
                   <form>
-                    <label className="mb-2 text-sm font-medium text-gray-900 sr-only">
-                      Search
-                    </label>
-                    <div className="relative w-full mr-3">
-                      <input
-                        type="search"
-                        id="search"
-                        placeholder="Amount"
-                        className="block w-full p-4 pl-10 text-lg border border-[#042940] focus:outline-none text-gray-900 rounded-[10px] bg-[rgba(4, 41, 64, 0.24)]"
-                        required
-                      />
+                    <div className="flex">
+                      <div className="relative flex items-center w-full">
+                        <input
+                            id="search"
+                            value={amount}
+                            onChange={handleAmountChange}
+                            placeholder="Amount"
+                            className="w-full p-4 pl-10 pr-100 text-lg border border-[#042940] focus:outline-none text-gray-900 rounded-[10px] bg-[rgba(4, 41, 64, 0.24)]"
+                        />
+                        <button id="max" onClick={handleMax} className="absolute right-20 top-0 mt-4 mr-6">
+                          Max
+                        </button>
+                        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                                className="absolute right-1 text-white bg-green-900 hover:bg-green-800 focus:ring-4 focus:outline-none
+                              focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex
+                              items-center dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                                type="button">
+                          USDT
+                          <svg className="w-4 h-4 ml-2" aria-hidden="true"
+                               fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M19 9l-7 7-7-7">
+
+                            </path>
+                          </svg>
+                        </button>
+                        <div id="dropdown"
+                             className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                          <ul className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                              aria-labelledby="dropdownDefaultButton">
+                            <li>
+                              <a href="#"
+                                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">USDT</a>
+                            </li>
+                            <li>
+                              <a href="#"
+                                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">ETH</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                   </form>
                 </div>
@@ -121,6 +186,10 @@ export const CampaingCard = () => {
                     Available balance:&nbsp;{balance}
                   </p>
                 </div>
+                <button id='donate' onClick={handleDonation} className="w-full mt-10 py-3 text-lg text-white bg-[#042940] rounded-[10px] hover:bg-[#042940] focus:outline-none focus:ring-2 focus:ring-[#005C53] focus:ring-opacity-50"
+                        type="button">
+                  Donate
+                </button>
               </div>
             </div>
           </div>
