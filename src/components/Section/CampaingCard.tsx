@@ -18,74 +18,82 @@ export const CampaingCard = () => {
   const [raised, setRaised] = useState<number>(0);
   const [toGo, setToGo] = useState<number>(0);
   const [percentage, setPercentage] = useState<number>(0);
+  const [approveEnabled, setApproveEnabled] = useState<boolean>(false);
+  const [donateEnabled, setDonateEnabled] = useState<boolean>(false);
   const collateralTokenAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
   const divaContractAddress = "0xFf7d52432B19521276962B67FFB432eCcA609148";
   const { address: activeAddress } = useAccount();
-  const [decimals, setDecimals] = useState(0);
+  const [decimals, setDecimals] = useState(8);
   const walletAddress = "0x0Aa30E5363f2b432D44e6a40Fc6a6A218dC5B484";
   const usdtTokenContract = useERC20Contract(collateralTokenAddress);
+  useEffect(() => {
+    const checkAllowance = async () => {
+      if (amount != null && usdtTokenContract != null) {
+        const allowance = await usdtTokenContract.allowance(activeAddress, divaContractAddress);
+        const sanitized = amount.replace(/,/g, '.');
+        console.log('allowance', formatUnits(allowance, decimals))
+        if (allowance.gte(parseUnits(sanitized!.toString(), decimals))) {
+          setApproveEnabled(false);
+          setDonateEnabled(true);
+        } else {
+          setApproveEnabled(true);
+          setDonateEnabled(false);
+        }
+      }
 
+    }
+    checkAllowance();
+  }, [amount, decimals])
   useEffect(() => {
     const getDecimals = async () => {
-        if (usdtTokenContract != null) {
-            const decimals = await usdtTokenContract.decimals();
-            setDecimals(decimals);
-        }
+      if (usdtTokenContract != null) {
+        const decimals = await usdtTokenContract.decimals();
+        setDecimals(decimals);
+      }
     }
     getDecimals();
-  },[])
-  useEffect(() => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const divaContract = new ethers.Contract('0xFf7d52432B19521276962B67FFB432eCcA609148', DivaABI, provider.getSigner());
     divaContract.getPoolParameters(1).then((res) => {
-      console.log(res)
-      console.log('goal', formatUnits(res.capacity, decimals))
-      console.log('raised', formatUnits(res.collateralBalance, decimals))
-      console.log('to go', formatUnits(res.capacity.sub(res.collateralBalance), decimals))
       setGoal(Number(formatUnits(res.capacity, decimals)));
       setRaised(Number(formatUnits(res.collateralBalance, decimals)));
       setToGo(Number(formatUnits(res.capacity.sub(res.collateralBalance), decimals)));
     })
   }, [decimals])
-
+  useEffect(() => {
+    setPercentage(raised / goal * 100);
+  }, [goal, raised])
+  const handleApprove = async () => {
+    usdtTokenContract.approve(divaContractAddress, parseUnits(amount!.toString(), decimals),{gasPrice: data?.gasPrice})
+        .then(
+            (tx) => {
+              tx.wait().then(() => {
+                console.log('success');
+                setApproveEnabled(false);
+                setDonateEnabled(true);
+              }
+                ).catch((err) => {
+                console.log(err);
+              })}
+            ).catch((err) => {
+            console.log(err);
+            })
+  }
   const handleDonation = async () => {
     if (amount != null) {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       const divaContract = new ethers.Contract('0xFf7d52432B19521276962B67FFB432eCcA609148', DivaABI, provider.getSigner());
-      console.log(data)
-      console.log(formatEther(data?.gasPrice))
-      console.log(formatEther(data?.maxFeePerGas))
       const decimals = await usdtTokenContract.decimals();
       const allowance = await usdtTokenContract.allowance(activeAddress, divaContractAddress);
       console.log(formatUnits(allowance,decimals));
-      if (allowance < parseUnits(amount!.toString(), decimals)) {
-        usdtTokenContract.approve(divaContractAddress, parseUnits(amount!.toString(), decimals),{gasPrice: data?.gasPrice})
-            .then(
-                (tx) => {
-                  tx.wait().then(() => {
-                    divaContract.addLiquidity(1, parseUnits(amount!.toString(), decimals), activeAddress, walletAddress,{gasPrice: data?.maxFeePerGas}).then(
-                        (tx) => {
-                          tx.wait().then(() => {
-                            console.log('success');
-                          })
-                        })
-                  }).catch((err) => {
-                    console.log(err);
-                  })
-                }).catch((err) => {
-          console.log(err);
-        })
-      } else {
-        divaContract.addLiquidity(1, parseUnits(amount!.toString(), decimals), activeAddress, walletAddress,{gasPrice: data?.maxFeePerGas}).then(
-            (tx) => {
-              tx.wait().then(() => {
-                console.log('success');
-              })
-            }).catch((err) => {
-          console.log(err);
-        })
-      }
-
+      divaContract.addLiquidity(1, parseUnits(amount!.toString(), decimals), activeAddress, walletAddress,{gasPrice: data?.maxFeePerGas}).then(
+          (tx) => {
+            tx.wait().then(() => {
+              console.log('success');
+            })
+          }).catch((err) => {
+        console.log(err);
+      })
     }
   }
   const handleMax = () => {
@@ -141,9 +149,10 @@ export const CampaingCard = () => {
                 </div>
 
                 <div className="mb-10 w-full bg-[#D6D58E] rounded-[10px]">
-                  <div className={'bg-[#005C53] text-xs w-['+ (raised / goal * 100) +'%] font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full'}>
+                  <div className="bg-[#005C53] text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full"
+                       style={{width: percentage+'%'}}>
                     {" "}
-                    {raised / goal * 100}%
+                    {percentage.toFixed(2)}%
                   </div>
                 </div>
 
@@ -231,10 +240,16 @@ export const CampaingCard = () => {
                     Available balance:&nbsp;{balance}
                   </p>
                 </div>
-                <button id='donate' onClick={handleDonation} className="w-full mt-10 py-3 text-lg text-white bg-[#042940] rounded-[10px] hover:bg-[#042940] focus:outline-none focus:ring-2 focus:ring-[#005C53] focus:ring-opacity-50"
-                        type="button">
-                  Donate
-                </button>
+                <div className="flex flex-row justify-between border-spacing-x-8">
+                  <button id='approve' onClick={handleApprove} className="disabled:opacity-25 w-full mt-10 mr-3 py-3 text-lg text-white bg-[#042940] rounded-[10px] hover:bg-[#042940] focus:outline-none focus:ring-2 focus:ring-[#005C53] focus:ring-opacity-50"
+                          type="button" disabled={!approveEnabled}>
+                    Approve
+                  </button>
+                  <button id='donate' onClick={handleDonation} className="disabled:opacity-25 w-full mt-10 py-3 text-lg text-white bg-[#042940] rounded-[10px] hover:bg-[#042940] focus:outline-none focus:ring-2 focus:ring-[#005C53] focus:ring-opacity-50"
+                          type="button" disabled={!donateEnabled}>
+                    Donate
+                  </button>
+                </div>
               </div>
             </div>
           </div>
