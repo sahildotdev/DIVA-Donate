@@ -7,39 +7,58 @@ import { Logo } from "./Logo";
 
 interface InfoCardProps {
   cardWidth: string;
-  cardHeight: string;
   title: string;
   paragraph: string;
   paragraphColor: string;
   titleSize: string;
+  paragraphSize?: string;
   titleColor: string;
   cardColor: string;
+  cardPadding?: string;
+  cardRadius: string;
+  lineHeight?: string;
 }
 
 export const InfoCard = ({
-  cardWidth,
-  cardHeight,
   title,
   paragraph,
   paragraphColor,
+  cardPadding,
   titleSize,
+  paragraphSize,
   titleColor,
   cardColor,
+  cardWidth,
+  cardRadius,
+  lineHeight,
 }: InfoCardProps) => (
-  <div className="flex">
-    <div
-      className={`p-8 ${cardWidth} ${cardHeight}  ${cardColor}  rounded-2xl shadow-md`}
+  <div
+    className={`flex flex-col rounded-[${cardRadius}] shadow-lg bg-[#005C53] text-left ${cardPadding} ${cardWidth} ${cardColor}`}
+  >
+    <h5
+      className={`font-semibold font-lora ${titleColor} ${titleSize} leading-[${lineHeight}]`}
     >
-      <div
-        className={`font-semibold ${titleColor} ${titleSize} m-auto  leading-normal mb-2`}
-      >
-        {title}
-      </div>
-      <p
-        className={`font-normal ${paragraphColor} align-middle m-auto text-base leading-5`}
-      >
-        {paragraph}
-      </p>
-    </div>
+      {title}
+    </h5>
+    <p
+      className={`font-normal font-openSans ${paragraphColor} ${paragraphSize}`}
+    >
+      {paragraph}
+    </p>
   </div>
 );
+{
+  /*<div className="flex justify-center">
+    <div className="block p-10 rounded-lg shadow-lg bg-[#005C53] text-left">
+      <div className="p-6">
+        <h5 className="text-[#DEEFE7] text-4xl text-[#D6D58E] font-medium mb-4 font-['lora']">
+          {title}
+        </h5>
+
+        <p className={`font-normal ${paragraphColor} text-base `}>
+          {paragraph}
+        </p>
+      </div>
+    </div>
+  </div>*/
+}

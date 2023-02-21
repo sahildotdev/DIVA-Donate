@@ -2,58 +2,64 @@ import { InfoCard } from "../InfoCard";
 import Image from "next/image";
 
 export const FeatureSection = () => (
-  <div className="container mx-auto pb-10 flex flex-row">
-    <div className="flex flex-col w-[60%] justify-evenly">
-      <div className="px-6">
-        <div className="font-semibold font-['lora'] text-5xl text-[#042940] mb-2">
-          Increasing efficiency <br /> and transparency via <br />
-          smart contract technology
+  <div className="container mx-auto p-6 justify-center items-center flex flex-col lg:flex-row">
+    <div className="flex flex-col w-[100%] lg:w-[60%] justify-evenly">
+      <div className="mb-10">
+        <div className="font-semibold w-[100%] lg:w-[80%] font-lora text-[23px] md:text-[46px] text-[#042940] mb-2">
+          Increasing efficiency <br />
+          and transparency via smart contract technology
         </div>
-        <p className="font-normal font-['Open_Sans'] text-[#042940] text-base">
+        <p className="font-normal font-openSans text-[#042940] text-sm md:text-base ">
           Smart contracts offer a highly efficient, trustless and transparent
           way to <br /> manage donation collections
         </p>
       </div>
-      <div className="grid gap-5 grid-rows-2">
+      <div className="grid gap-8 grid-cols-1 lg:grid-rows-2">
         <InfoCard
-          cardWidth="w-80"
-          cardHeight=""
+          cardWidth="w-auto lg:w-[372px]"
+          cardRadius="20px"
+          cardPadding="p-8"
           title="Transparent"
           paragraph="Donation flows are transparent and auditable on the blockchain"
           paragraphColor="text-[#042940]"
-          titleSize="text-4xl"
-          titleColor="text-[#042940]"
-          cardColor="bg-[#9FC131]"
+          titleSize="text-[23px] md:text-[46px]"
+          paragraphSize="text-sm md:text-base"
+          titleColor="text-[#005C53]"
+          cardColor="bg-[#DEEFE7]"
         />
-        <div className="grid gap-4 grid-cols-2 w-[80%] ">
+        <div className="grid gap-6 lg:gap-0 grid-cols-1 lg:grid-cols-2">
           <InfoCard
-            cardWidth="w-80"
-            cardHeight=""
+            cardWidth="w-auto lg:w-[372px]"
+            cardRadius="20px"
+            cardPadding="p-8"
             title="Trustless"
             paragraph="Funds are held in an programmatic escrow eliminating the risk of misuse and fraud"
             paragraphColor="text-[#042940]"
-            titleSize="text-4xl"
-            titleColor="text-[#042940]"
-            cardColor="bg-[#9FC131]"
+            titleSize="text-[23px] md:text-[46px]"
+            paragraphSize="text-sm md:text-base"
+            titleColor="text-[#005C53]"
+            cardColor="bg-[#DEEFE7]"
           />
           <InfoCard
-            cardWidth="w-80"
+            cardWidth="w-auto lg:w-[372px]"
+            cardRadius="20px"
+            cardPadding="p-8"
             title="Efficient"
-            cardHeight=""
             paragraph="Programmatically enforced rules remove the need for manual processes"
             paragraphColor="text-[#042940]"
-            titleSize="text-4xl"
-            titleColor="text-[#042940]"
-            cardColor="bg-[#9FC131]"
+            titleSize="text-[23px] md:text-[46px]"
+            paragraphSize="text-sm md:text-base"
+            titleColor="text-[#005C53]"
+            cardColor="bg-[#DEEFE7]"
           />
         </div>
       </div>
     </div>
-    <div className="w-[50%] flex">
+    <div className="w-[50%] flex items-center justify-center p-6 mt-8 lg:mt-0">
       <Image
-        className="object-contain"
-        width="800"
-        height="800"
+        className=""
+        width="517"
+        height="630"
         src="/Images/feature.png"
         alt="Modern building architecture"
       />
