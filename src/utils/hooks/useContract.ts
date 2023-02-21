@@ -36,7 +36,6 @@ function useContract<T extends Contract = Contract>(
 export function useERC20Contract(
   contractAddress: string
 ): any {
-  const { address: activeAddress } = useAccount();
   // const provider: any =
   //     new ethers.providers.AlchemyProvider(
   //     "matic",
@@ -45,18 +44,23 @@ export function useERC20Contract(
   //
   // const provider = new EtherscanProvider("matic", "V7R1QM3PC1PVFP6GEJKRBI669HPKX9ZKIE")
   // console.log("provider", provider)
-  if (typeof window != 'undefined') {
+  if (typeof window != 'undefined' && typeof window?.ethereum != 'undefined') {
     // running on client and window + ethereum is avail
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     return new ethers.Contract(contractAddress, ERC20ABI, provider?.getSigner());
+  } else {
+    const provider = new ethers.providers.AlchemyProvider(
+        "matic",
+        "p3-IGmZPQrd-ri5AGlGm4cVm8k1uhCXx" // Should be replaced by env variable
+    );
+    return new ethers.Contract(contractAddress, ERC20ABI, provider);
   }
-
 }
 
 export function useDivaContract(): any {
-  if (typeof window != 'undefined') {
+  if (typeof window != 'undefined' && typeof window?.ethereum != 'undefined') {
     // running on client and window + ethereum is avail
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     return new ethers.Contract('0xFf7d52432B19521276962B67FFB432eCcA609148', DivaABI, provider?.getSigner());
-  }
+  } else return null;
 }
