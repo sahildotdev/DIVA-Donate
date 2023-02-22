@@ -15,7 +15,7 @@ const links = [
     name: "Campaigns",
   },
   {
-    to: "",
+    to: "/donations",
     name: "My Donations",
   },
   {
