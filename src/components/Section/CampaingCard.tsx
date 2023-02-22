@@ -129,7 +129,7 @@ export const CampaingCard = () => {
     if (activeAddress != null) {
       getBalance();
     }
-  }, [activeAddress]);
+  }, [activeAddress, donateLoading]);
   return (
     <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] justify-center mx-auto px-4">
       <div className="grid px-4 py-8 mx-auto gap-auto lg:py-16 lg:grid-cols-12">
