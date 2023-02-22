@@ -6,16 +6,19 @@ export default function Donations() {
     const poolId = 2;
     const divaContractAddress = "0xFf7d52432B19521276962B67FFB432eCcA609148";
     const [redeemLoading, setRedeemLoading] = useState(false);
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    const diva = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
+
     const [longToken, setLongToken] = useState("");
     useEffect(() => {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const diva = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
         diva.getPoolParameters(poolId).then((res: any) => {
             console.log(res.longToken)
             setLongToken(res.longToken)
         })
     }, [])
     const handleRedeem = () => {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const diva = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
         setRedeemLoading(true);
         diva
             .redeemPositionToken(longToken, 1)
