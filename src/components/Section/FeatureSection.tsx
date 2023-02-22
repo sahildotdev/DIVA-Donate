@@ -2,67 +2,65 @@ import { InfoCard } from "../InfoCard";
 import Image from "next/image";
 
 export const FeatureSection = () => (
-  <div className="container mx-auto p-6 justify-center items-center flex flex-col lg:flex-row">
-    <div className="flex flex-col w-[100%] lg:w-[60%] justify-evenly">
-      <div className="mb-10">
-        <div className="font-semibold w-[100%] lg:w-[80%] font-lora text-[23px] md:text-[46px] text-[#042940] mb-2">
-          Increasing efficiency <br />
-          and transparency via smart contract technology
-        </div>
-        <p className="font-normal font-openSans text-[#042940] text-sm md:text-base ">
-          Smart contracts offer a highly efficient, trustless and transparent
-          way to <br /> manage donation collections
-        </p>
-      </div>
-      <div className="grid gap-8 grid-cols-1 lg:grid-rows-2">
+  <section className="pt-[5rem]">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 text-center lg:items-center lg:justify-between">
+      <h1 className="font-lora font-semibold text-[30px] md:text-[60px] leading-[76.8px] text-[#042940]">
+        Why smart contracts?
+      </h1>
+      <p className="font-semibold font-openSans text-[15px] md:text-[20px] mt-6 text-[#005C53] ">
+        Increasing efficiency and transparency
+      </p>
+      <hr className="w-[15rem] md:w-[25rem] h-[8px] mx-auto bg-[#9FC131] border-0 rounded-[20px] mt-6" />
+    </div>
+    <div className="container flex flex-col lg:flex-row-reverse justify-center md:justify-around mx-auto p-6 ">
+      <Image
+        className="w-[520px] h-[560px] pb-5 md:pb-0"
+        width="520"
+        height="560"
+        src="/Images/SmartContractsimg.png"
+        alt="Conditional Donation"
+      />
+
+      <div className="grid gap-5 lg:gap-[34px] grid-rows-3">
         <InfoCard
-          cardWidth="w-auto lg:w-[372px]"
+          cardPadding="p-4 md:p-8"
+          cardWidth="w-auto md:w-full"
           cardRadius="20px"
-          cardPadding="p-8"
-          title="Transparent"
-          paragraph="Donation flows are transparent and auditable on the blockchain"
+          title="Targeted"
+          paragraph="Donations are released when beneficiaries are in actual need"
           paragraphColor="text-[#042940]"
           titleSize="text-[23px] md:text-[46px]"
           paragraphSize="text-sm md:text-base"
-          titleColor="text-[#005C53]"
+          titleColor="text-[#042940]"
           cardColor="bg-[#DEEFE7]"
         />
-        <div className="grid gap-6 lg:gap-0 grid-cols-1 lg:grid-cols-2">
-          <InfoCard
-            cardWidth="w-auto lg:w-[372px]"
-            cardRadius="20px"
-            cardPadding="p-8"
-            title="Trustless"
-            paragraph="Funds are held in an programmatic escrow eliminating the risk of misuse and fraud"
-            paragraphColor="text-[#042940]"
-            titleSize="text-[23px] md:text-[46px]"
-            paragraphSize="text-sm md:text-base"
-            titleColor="text-[#005C53]"
-            cardColor="bg-[#DEEFE7]"
-          />
-          <InfoCard
-            cardWidth="w-auto lg:w-[372px]"
-            cardRadius="20px"
-            cardPadding="p-8"
-            title="Efficient"
-            paragraph="Programmatically enforced rules remove the need for manual processes"
-            paragraphColor="text-[#042940]"
-            titleSize="text-[23px] md:text-[46px]"
-            paragraphSize="text-sm md:text-base"
-            titleColor="text-[#005C53]"
-            cardColor="bg-[#DEEFE7]"
-          />
-        </div>
+
+        <InfoCard
+          cardPadding="p-4 md:p-8"
+          cardWidth="w-auto md:w-full"
+          cardRadius="20px"
+          title="Parametric"
+          paragraph="The underlying event is measurable and its verification is detached from any potential external bias"
+          paragraphColor="text-[#042940]"
+          titleSize="text-3xl md:text-5xl"
+          paragraphSize="text-sm md:text-base"
+          titleColor="text-[#042940]"
+          cardColor="bg-[#DEEFE7]"
+        />
+
+        <InfoCard
+          cardPadding="p-4 md:p-8"
+          cardWidth="w-auto md:w-full"
+          cardRadius="20px"
+          title="Pro-active"
+          paragraph="Reduces delays in fund release as available resources have been deposited in advance"
+          paragraphColor="text-[#042940]"
+          titleSize="text-3xl md:text-5xl"
+          paragraphSize="text-sm md:text-base"
+          titleColor="text-[#042940]"
+          cardColor="bg-[#DEEFE7]"
+        />
       </div>
     </div>
-    <div className="w-[50%] flex items-center justify-center p-6 mt-8 lg:mt-0">
-      <Image
-        className=""
-        width="517"
-        height="630"
-        src="/Images/feature.png"
-        alt="Modern building architecture"
-      />
-    </div>
-  </div>
+  </section>
 );

@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="bg-[#F3FDF8]">
-      <div className="container pt-[5rem] p-6 sm:pt-[8rem] md:pt-[8rem] flex flex-col justify-center mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
+    <section className="relative  bg-[#F3FDF8] xl:bg-[url('/Images/landing-illustration.png')] bg-no-repeat bg-right">
+      <div className="container flex items-center content-center p-6 sm:pt-[8rem] md:pt-[8rem] py-12 md:py-34 pl-10  ">
         <div className="flex flex-col justify-center text-center rounded-sm lg:text-left">
           <h1 className="text-[40px] md:text-[80px] font-semibold text-[#042940] font-lora">
             Event-Driven
@@ -37,16 +37,16 @@ export default function HeroSection() {
             </Link>
           </div>
         </div>
-        <div className="flex items-center justify-center p-6 mt-8 lg:mt-0">
-          <div>
-            <Image
-              className="object-contain"
-              width="800"
-              height="800"
-              src="/Images/landing-illustration.png"
-              alt="Modern building architecture"
-            />
-          </div>
+      </div>
+      <div className="flex items-center justify-center lg:hidden p-6 mt-8 lg:mt-0">
+        <div>
+          <Image
+            className="object-contain"
+            width="800"
+            height="800"
+            src="/Images/landing-illustration.png"
+            alt="Modern building architecture"
+          />
         </div>
       </div>
     </section>
