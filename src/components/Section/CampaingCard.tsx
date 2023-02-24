@@ -70,10 +70,10 @@ export const CampaingCard = () => {
         setToGo(Number(formatUnits(res.capacity.sub(res.collateralBalance), decimals)));
       })
     }
-  }, [decimals])
+  }, [decimals, donateLoading])
   useEffect(() => {
     setPercentage(raised / goal * 100);
-  }, [goal, raised])
+  }, [goal, raised, donateLoading])
   const handleApprove = async () => {
     setApproveLoading(true);
     usdtTokenContract.approve(divaContractAddress, parseUnits(amount!.toString(), decimals),{gasPrice: data?.gasPrice})
