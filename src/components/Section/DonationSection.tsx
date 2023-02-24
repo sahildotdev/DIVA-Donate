@@ -35,17 +35,17 @@ export const DonationSection = () => {
             <div className="overflow-visible relative max-w-xl mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
               <Image
                 className="absolute -left-8 w-24 h-24 rounded-full shadow-lg"
-                src="/Images/rain.png"
+                src="/Images/Expiry.png"
                 width={100}
                 height={100}
                 alt="Trigger metric"
               />
               <div className="flex flex-col text-4xl text-left py-2 pl-24 pr-10">
                 <strong className="text-[#005C53] font-semibold font-['lora']">
-                  Trigger metric
+                  Expiry
                 </strong>
                 <span className="text-[#042940] text-xl font font-['Open_Sans'] ">
-                  Average NDVI (1 Feb - 31 May 2023)
+                  11 June 2023, 8:00pm UTC
                 </span>
               </div>
             </div>
@@ -54,17 +54,17 @@ export const DonationSection = () => {
             <div className="overflow-visible relative max-w-xl mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
               <Image
                 className="absolute -left-8 w-24 h-24 rounded-full shadow-lg"
-                src="/Images/rain.png"
+                src="/Images/Reporter.png"
                 width={100}
                 height={100}
                 alt="Trigger metric"
               />
               <div className="flex flex-col text-4xl text-left py-2 pl-24 pr-10">
                 <strong className="text-[#005C53] font-semibold font-['lora']">
-                  Trigger metric
+                  Reporter
                 </strong>
                 <span className="text-[#042940] text-xl font font-['Open_Sans'] ">
-                  Average NDVI (1 Feb - 31 May 2023)
+                  Shamba Network
                 </span>
               </div>
             </div>
@@ -73,17 +73,17 @@ export const DonationSection = () => {
             <div className="overflow-visible relative max-w-xl mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
               <Image
                 className="absolute -left-8 w-24 h-24 rounded-full shadow-lg"
-                src="/Images/rain.png"
+                src="/Images/Data.png"
                 width={100}
                 height={100}
                 alt="Trigger metric"
               />
               <div className="flex flex-col text-4xl text-left py-2 pl-24 pr-10">
                 <strong className="text-[#005C53] font-semibold font-['lora']">
-                  Trigger metric
+                  Data source
                 </strong>
                 <span className="text-[#042940] text-xl font font-['Open_Sans'] ">
-                  Average NDVI (1 Feb - 31 May 2023)
+                  eVIIRS satellite data
                 </span>
               </div>
             </div>

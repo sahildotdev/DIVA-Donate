@@ -133,10 +133,10 @@ export const CampaingCard = () => {
     }
   }, [activeAddress, donateLoading]);
   return (
-    <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] justify-center mx-auto px-4">
-      <div className="grid px-4 py-8 mx-auto gap-auto lg:py-16 lg:grid-cols-12">
-        <div className="mx-auto lg:mt-0 lg:col-span-5 lg:flex">
-          <div className="max-w-xl sm-bg-auto bg-cover bg-center bg-no-repeat rounded-[2rem] bg-[url('/Images/pastrolists400pxVertical.png')] rounded-lg ">
+    <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] justify-center mx-auto">
+      <div className="grid px-12 py-8 mx-auto lg:py-16 lg:grid-cols-9">
+        <div className="mx-auto lg:mt-0 lg:col-span-4 lg:flex">
+          <div className=" sm-bg-auto bg-cover bg-center bg-no-repeat rounded-[28px] bg-[url('/Images/pastrolists400pxVertical.png')] rounded-lg ">
             <div className="p-8 relative top-[28rem] text-[#DEEFE7] ">
               <h5 className="font-semibold text-4xl font-['lora']">
                 Fortune DIVA
@@ -152,9 +152,9 @@ export const CampaingCard = () => {
             </div>
           </div>
         </div>
-        <div className="lg:col-span-7">
-          <div className=" flex flex-col py-12">
-            <div className="max-w-xl mx-auto mb-10 bg-[#FFFFFF] border border-gray-200 rounded-[16px] drop-shadow-xl ">
+        <div className="lg:col-span-5">
+          <div className=" flex flex-col">
+            <div className=" mx-auto pb-12 bg-[#FFFFFF] border border-gray-200 rounded-[26px] drop-shadow-xl ">
               <div className="justify-evenly p-[60px] ">
                 <div className="mb-10">
                   <p className="mb-3 font-normal font-['Open_Sans'] text-base text-center text-[#042940]">
@@ -213,7 +213,7 @@ export const CampaingCard = () => {
                             value={amount}
                             onChange={handleAmountChange}
                             placeholder="Amount"
-                            className="w-full p-4 pl-10 pr-100 text-lg border border-[#042940] focus:outline-none text-gray-900 rounded-[10px] bg-[rgba(4, 41, 64, 0.24)]"
+                            className="w-full p-4 pl-10 pr-10 text-lg border border-[#042940] focus:outline-none text-gray-900 rounded-[10px] bg-[rgba(4, 41, 64, 0.24)]"
                         />
                         <button id="max" onClick={handleMax} className="absolute right-20 top-0 mt-4 mr-6">
                           Max
