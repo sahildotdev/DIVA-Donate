@@ -14,7 +14,7 @@ export const FeatureSection = () => (
     </div>
     <div className="container flex flex-col lg:flex-row-reverse justify-center md:justify-around mx-auto p-6 ">
       <Image
-        className="w-[520px] h-[560px] pb-5 md:pb-0"
+        className="w-[520px] h-[560px] md:pb-0"
         width="520"
         height="560"
         src="/Images/SmartContractsimg.png"

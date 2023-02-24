@@ -22,6 +22,7 @@ export const CampaingCard = () => {
   const [approveLoading, setApproveLoading] = useState<boolean>(false);
   const [donateEnabled, setDonateEnabled] = useState<boolean>(false);
   const [donateLoading, setDonateLoading] = useState<boolean>(false);
+  const [expiryDate, setExpiryDate] = useState<string>("");
   const collateralTokenAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
   const divaContractAddress = "0xFf7d52432B19521276962B67FFB432eCcA609148";
   const { address: activeAddress } = useAccount();
@@ -65,6 +66,7 @@ export const CampaingCard = () => {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       const divaContract = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
       divaContract.getPoolParameters(poolId).then((res) => {
+        setExpiryDate(new Date(Number(res.expiryTime)*1000).toString());
         setGoal(Number(formatUnits(res.capacity, decimals)));
         setRaised(Number(formatUnits(res.collateralBalance, decimals)));
         setToGo(Number(formatUnits(res.capacity.sub(res.collateralBalance), decimals)));
@@ -145,7 +147,7 @@ export const CampaingCard = () => {
                 campaign aims to support more than 150 farmers across Africa.
               </p>
               <span className="inline-block text-lg text-[#DBF227] align-middle">
-                Expiry: 31 December 2022, 8pm UTC
+                Expiry: {expiryDate}
               </span>
             </div>
           </div>

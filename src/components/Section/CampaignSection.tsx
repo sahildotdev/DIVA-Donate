@@ -1,7 +1,51 @@
 import Image from "next/image";
 import Link from "next/link";
+import {useEffect, useState} from "react";
+import {ethers} from "ethers";
+import {DivaABI} from "../../abi";
+import {formatUnits} from "ethers/lib/utils";
+import {useAccount} from "wagmi";
+import {useERC20Contract} from "../../utils/hooks/useContract";
 
 export const CampaignSection = () => {
+  const [goal, setGoal] = useState<number>(0);
+  const [raised, setRaised] = useState<number>(0);
+  const [toGo, setToGo] = useState<number>(0);
+  const [percentage, setPercentage] = useState<number>(0);
+  const [expiryDate, setExpiryDate] = useState<string>("");
+  const [decimals, setDecimals] = useState();
+  const divaContractAddress = "0xFf7d52432B19521276962B67FFB432eCcA609148";
+  const { address: activeAddress } = useAccount();
+  const collateralTokenAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
+
+  const usdtTokenContract = useERC20Contract(collateralTokenAddress);
+  const poolId = 1;
+
+
+  useEffect(() => {
+    const getDecimals = async () => {
+      if (usdtTokenContract != null) {
+        const decimals = await usdtTokenContract.decimals();
+        setDecimals(decimals);
+      }
+    }
+    getDecimals();
+    if (activeAddress != null && typeof window != 'undefined' && typeof window?.ethereum != 'undefined') {
+
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      const divaContract = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
+      divaContract.getPoolParameters(poolId).then((res) => {
+        setExpiryDate(new Date(Number(res.expiryTime)*1000).toLocaleDateString());
+        setGoal(Number(formatUnits(res.capacity, decimals)));
+        setRaised(Number(formatUnits(res.collateralBalance, decimals)));
+        setToGo(Number(formatUnits(res.capacity.sub(res.collateralBalance), decimals)));
+      })
+    }
+  }, [decimals, activeAddress])
+  useEffect(() => {
+    setPercentage(raised / goal * 100);
+  }, [goal, raised])
+
   return (
     <section className="pt-[5rem]">
       <div className="container mx-auto p-6">
@@ -27,7 +71,7 @@ export const CampaignSection = () => {
               <div className="relative -mt-10">
                 <div className="text-lg pl-2 bg-[#DBF227] w-[320px] h-[40px] rounded-tr-[3.75rem] text-left text-green-[#042940] w-[320px]">
                   <span className="inline-block align-middle">
-                    Expiry: 31 December 2022, 8pm UTC
+                    Expiry: {expiryDate}
                   </span>
                 </div>
               </div>
@@ -72,9 +116,10 @@ export const CampaignSection = () => {
               </div>
 
               <div className="mb-3 w-full bg-[#D6D58E] rounded-[10px]">
-                <div className="bg-[#005C53] text-xs w-[45%] font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full">
+                <div className='bg-[#005C53] text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full'
+                     style={{width: percentage+'%'}}>
                   {" "}
-                  45%
+                  {percentage}%
                 </div>
               </div>
 
@@ -84,7 +129,7 @@ export const CampaignSection = () => {
                     Goal
                   </dt>
                   <dd className="font-normal text-base text-[#042940] ">
-                    $15,000
+                    ${goal}
                   </dd>
                 </div>
                 <div className="flex flex-col items-center justify-center">
@@ -92,7 +137,7 @@ export const CampaignSection = () => {
                     Raised
                   </dt>
                   <dd className="font-normal text-base text-[#042940] ">
-                    $6,750
+                    ${raised}
                   </dd>
                 </div>
                 <div className="flex flex-col items-center justify-center">
@@ -100,7 +145,7 @@ export const CampaignSection = () => {
                     To go
                   </dt>
                   <dd className="font-normal text-base text-[#042940] ">
-                    $8,250
+                    ${toGo}
                   </dd>
                 </div>
               </div>
