@@ -35,7 +35,7 @@ export const CampaignSection = () => {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       const divaContract = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
       divaContract.getPoolParameters(poolId).then((res) => {
-        setExpiryDate(new Date(Number(res.expiryTime)*1000).toLocaleDateString());
+        setExpiryDate(new Date(Number(res.expiryTime)*1000).toLocaleDateString(undefined,{ day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', hour12: true, timeZoneName: 'short' }));
         setGoal(Number(formatUnits(res.capacity, decimals)));
         setRaised(Number(formatUnits(res.collateralBalance, decimals)));
         setToGo(Number(formatUnits(res.capacity.sub(res.collateralBalance), decimals)));
@@ -154,7 +154,7 @@ export const CampaignSection = () => {
                   type="button"
                   className="text-white bg-[#042940] hover:bg-blue-700 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
                 >
-                  View Campings
+                  View Campaigns
                 </button>
               </Link>
             </div>

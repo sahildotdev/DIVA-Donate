@@ -66,7 +66,7 @@ export const CampaingCard = () => {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       const divaContract = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
       divaContract.getPoolParameters(poolId).then((res) => {
-        setExpiryDate(new Date(Number(res.expiryTime)*1000).toString());
+        setExpiryDate(new Date(Number(res.expiryTime)*1000).toLocaleDateString(undefined,{ day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', hour12: true, timeZoneName: 'short' }));
         setGoal(Number(formatUnits(res.capacity, decimals)));
         setRaised(Number(formatUnits(res.collateralBalance, decimals)));
         setToGo(Number(formatUnits(res.capacity.sub(res.collateralBalance), decimals)));
@@ -134,9 +134,9 @@ export const CampaingCard = () => {
   }, [activeAddress, donateLoading]);
   return (
     <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] justify-center mx-auto">
-      <div className="grid px-12 py-8 mx-auto lg:py-16 lg:grid-cols-9">
+      <div className="grid px-12 gap-2 mx-auto lg:py-16 lg:grid-cols-9">
         <div className="mx-auto lg:mt-0 lg:col-span-4 lg:flex">
-          <div className=" sm-bg-auto bg-cover bg-center bg-no-repeat rounded-[28px] bg-[url('/Images/pastrolists400pxVertical.png')] rounded-lg ">
+          <div className=" sm-bg-auto bg-cover bg-center bg-no-repeat rounded-[32px] bg-[url('/Images/pastrolists400pxVertical.png')] rounded-lg ">
             <div className="p-8 relative top-[28rem] text-[#DEEFE7] ">
               <h5 className="font-semibold text-4xl font-['lora']">
                 Fortune DIVA

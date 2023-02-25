@@ -63,7 +63,7 @@ export default function Donations() {
                 console.log(balance)
                 console.log(formatUnits(res.payoutShort.mul(parseUnits(balance.toString(), decimals))));
                 setDonated(formatUnits(res.payoutShort.mul(parseUnits(balance.toString(), decimals))));
-                setExpiryDate(new Date(Number(res.expiryTime)*1000).toString().slice(0, 25));
+                setExpiryDate(new Date(Number(res.expiryTime)*1000).toLocaleDateString(undefined,{ day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', hour12: true, timeZoneName: 'short' }));
                 setGoal(Number(formatUnits(res.capacity, decimals)));
                 setRaised(Number(formatUnits(res.collateralBalance, decimals)));
                 setToGo(Number(formatUnits(res.capacity.sub(res.collateralBalance), decimals)));
@@ -71,8 +71,8 @@ export default function Donations() {
         }
     }, [decimals, balance])
     useEffect(() => {
-        setPercentage((raised / goal * 100).toFixed(2));
-    }, [goal, raised])
+        setPercentage((Number(donated) / balance * 100).toFixed(2));
+    }, [donated, balance])
 
     const handleRedeem = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -98,8 +98,8 @@ export default function Donations() {
 
 
     return (
-        <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] justify-center mx-auto px-4">
-            <div className="max-w-sm mb-10 bg-[#DEEFE7] border border-gray-200 rounded-[16px] shadow-md ">
+        <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] mx-auto px-4">
+            <div className="max-w-sm mb-10 bg-[#DEEFE7] mx-auto border border-gray-200 rounded-[16px] shadow-md ">
                 <a href="#">
                     <Image
                         className="w-full rounded-t-[16px] object-cover"

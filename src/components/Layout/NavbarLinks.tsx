@@ -18,10 +18,10 @@ const links = [
     to: "/donations",
     name: "My Donations",
   },
-  {
-    to: "",
-    name: "My Campaigns",
-  },
+  // {
+  //   to: "",
+  //   name: "My Campaigns",
+  // },
   {
     to: "",
     name: "FAQs",
