@@ -1,3 +1,4 @@
+'use client';
 import {BigNumber, ethers} from "ethers";
 import {DivaABI, ERC20ABI} from "../../abi";
 import {useEffect, useState} from "react";
@@ -7,6 +8,7 @@ import {useAccount} from "wagmi";
 import {useERC20Contract} from "../../utils/hooks/useContract";
 import {formatUnits, parseUnits} from "ethers/lib/utils";
 import {getTokenBalance} from "../../utils/general";
+import {Progress, ProgressLabel, Text} from "@chakra-ui/react";
 
 export default function Donations() {
     const poolId = 2;
@@ -20,19 +22,36 @@ export default function Donations() {
     const [percentage, setPercentage] = useState<number>(0);
     const [expiryDate, setExpiryDate] = useState<string>("");
     const [decimals, setDecimals] = useState();
+    const [claimEnabled, setClaimEnabled] = useState(false);
     const { address: activeAddress } = useAccount();
     const collateralTokenAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
 
     const usdtTokenContract = useERC20Contract(collateralTokenAddress);
 
     const [longToken, setLongToken] = useState("");
-    useEffect(() => {
+
+    const handleAddMetaMask = async (e) => {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
-        const diva = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
-        diva.getPoolParameters(poolId).then((res: any) => {
-            setLongToken(res.longToken)
-        })
-    }, [])
+        const token = new ethers.Contract(longToken, ERC20ABI, provider.getSigner())
+        const decimal = await token.decimals()
+        try {
+            await window.ethereum.request({
+                method: 'wallet_watchAsset',
+                params: {
+                    type: 'ERC20',
+                    options: {
+                        address: activeAddress,
+                        symbol: 'L-'+poolId, // A ticker symbol or shorthand, up to 5 chars.
+                        decimals: decimal,
+                        image:
+                            'https://res.cloudinary.com/dphrdrgmd/image/upload/v1641730802/image_vanmig.png',
+                    },
+                } as any,
+            })
+        } catch (error) {
+            console.error('Error in HandleAddMetaMask', error)
+        }
+    }
     const getBalance = async () => {
         if (longToken!= "" && activeAddress != null && typeof window != 'undefined' && typeof window?.ethereum != 'undefined') {
             const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -60,7 +79,11 @@ export default function Donations() {
             const provider = new ethers.providers.Web3Provider(window.ethereum)
             const divaContract = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
             divaContract.getPoolParameters(poolId).then((res) => {
-                console.log(balance)
+                if (res.statusFinalReferenceValue === 3){
+                    setClaimEnabled(true);
+                }
+                setLongToken(res.longToken)
+                console.log(res)
                 console.log(formatUnits(res.payoutShort.mul(parseUnits(balance.toString(), decimals))));
                 setDonated(formatUnits(res.payoutShort.mul(parseUnits(balance.toString(), decimals))));
                 setExpiryDate(new Date(Number(res.expiryTime)*1000).toLocaleDateString(undefined,{ day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', hour12: true, timeZoneName: 'short' }));
@@ -98,8 +121,8 @@ export default function Donations() {
 
 
     return (
-        <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] my-auto mx-auto px-4">
-            <div className="max-w-sm mb-10 bg-[#DEEFE7] mx-auto border border-gray-200 rounded-[16px] shadow-md ">
+        <div className=" pt-[5rem] sm:pt-[8rem] md:pt-[8rem] my-auto mx-auto px-4">
+            <div className="max-w-sm mb-5 bg-[#DEEFE7] mx-auto border border-gray-200 rounded-[16px] shadow-md ">
                 <a href="#">
                     <Image
                         className="w-full rounded-t-[16px] object-cover"
@@ -110,9 +133,9 @@ export default function Donations() {
                     />
                     <div className="relative -mt-10">
                         <div className="text-lg pl-2 bg-[#DBF227] w-[320px] h-[40px] rounded-tr-[3.75rem] text-left text-green-[#042940] w-[320px]">
-                  <span className="inline-block align-middle">
-                    Expiry: {expiryDate}
-                  </span>
+                            <span className="mt-1 font-light inline-block align-middle">
+                              Expiry: {expiryDate}
+                            </span>
                         </div>
                     </div>
                 </a>
@@ -121,8 +144,8 @@ export default function Donations() {
                         Fortune DIVA
                     </h5>
 
-                    <div className="text-indigo-600 flex items-center dark:text-indigo-400">
-                        <span className="text-slate-400 font-normal">#S1234</span>
+                    <div onClick={handleAddMetaMask} className="text-indigo-600 flex items-center dark:text-indigo-400">
+                        <span className="text-slate-400 font-normal">#{poolId}</span>
 
                         <svg
                             width="16"
@@ -132,7 +155,7 @@ export default function Donations() {
                             xmlns="http://www.w3.org/2000/svg"
                             className="ml-2"
                         >
-                            <g clip-path="url(#clip0_270_567)">
+                            <g clipPath="url(#clip0_270_567)">
                                 <path
                                     d="M8 0C6.41775 0 4.87103 0.469192 3.55544 1.34824C2.23985 2.22729 1.21447 3.47672 0.608967 4.93853C0.00346629 6.40034 -0.15496 8.00888 0.153721 9.56072C0.462403 11.1126 1.22433 12.538 2.34315 13.6569C3.46197 14.7757 4.88743 15.5376 6.43928 15.8463C7.99113 16.155 9.59966 15.9965 11.0615 15.391C12.5233 14.7855 13.7727 13.7602 14.6518 12.4446C15.5308 11.129 16 9.58225 16 8C15.9977 5.87897 15.1541 3.84547 13.6543 2.34568C12.1545 0.845886 10.121 0.00229405 8 0V0ZM10.6667 8.66667H8.66667V10.6667C8.66667 10.8435 8.59643 11.013 8.47141 11.1381C8.34638 11.2631 8.17682 11.3333 8 11.3333C7.82319 11.3333 7.65362 11.2631 7.5286 11.1381C7.40358 11.013 7.33334 10.8435 7.33334 10.6667V8.66667H5.33334C5.15653 8.66667 4.98696 8.59643 4.86193 8.47141C4.73691 8.34638 4.66667 8.17681 4.66667 8C4.66667 7.82319 4.73691 7.65362 4.86193 7.5286C4.98696 7.40357 5.15653 7.33333 5.33334 7.33333H7.33334V5.33333C7.33334 5.15652 7.40358 4.98695 7.5286 4.86193C7.65362 4.73691 7.82319 4.66667 8 4.66667C8.17682 4.66667 8.34638 4.73691 8.47141 4.86193C8.59643 4.98695 8.66667 5.15652 8.66667 5.33333V7.33333H10.6667C10.8435 7.33333 11.0131 7.40357 11.1381 7.5286C11.2631 7.65362 11.3333 7.82319 11.3333 8C11.3333 8.17681 11.2631 8.34638 11.1381 8.47141C11.0131 8.59643 10.8435 8.66667 10.6667 8.66667Z"
                                     fill="#898989"
@@ -155,15 +178,13 @@ export default function Donations() {
                         </p>
                     </div>
 
-                    <div className="mb-3 w-full bg-[#D6D58E] rounded-[10px]">
-                        <div className='bg-[#005C53] text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full'
-                             style={{width: percentage+'%'}}>
-                            {" "}
-                            {percentage}%
-                        </div>
-                    </div>
+                    <Progress className=" mb-3 rounded-[20px]" style={{background: '#D6D58E'}} colorScheme='green' height='22px' value={percentage} >
+                        <ProgressLabel className="text-2xl flex flex-start">
+                            <Text fontSize="xs">{percentage}%</Text>
+                        </ProgressLabel>
+                    </Progress>
 
-                    <div className="grid grid-cols-3 text-center divide-x-[1px] divide-[#005C53] mb-3">
+                    <div className="grid grid-cols-2 text-center divide-x-[1px] divide-[#005C53] mb-3">
                         <div className="flex flex-col items-center justify-center">
                             <dt className="mb-2 font-medium text-xl text-[#042940]">
                                 Committed
@@ -182,9 +203,10 @@ export default function Donations() {
                         </div>
                     </div>
                         <button
+                            disabled={!claimEnabled}
                             onClick={handleRedeem}
                             type="button"
-                            className="text-white bg-[#042940] hover:bg-blue-700 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
+                            className="disabled:opacity-25 text-white bg-[#042940] hover:bg-blue-700 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
                         >
                             Claim Donated Amount
                         </button>

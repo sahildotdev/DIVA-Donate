@@ -23,7 +23,7 @@ const links = [
   //   name: "My Campaigns",
   // },
   {
-    to: "",
+    to: "/faq",
     name: "FAQs",
   },
 ];

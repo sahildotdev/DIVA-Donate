@@ -37,7 +37,7 @@ export default function HeroSection() {
             </Link>
           </div>
         </div>
-        <div className=" z-20 mt-[1rem] -mb-[5rem]">
+        <div className=" z-5 mt-[1rem] -mb-[5rem]">
           <div>
             <Image
                 className="object-contain"
