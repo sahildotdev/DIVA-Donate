@@ -181,7 +181,6 @@ export default function Donations() {
                             </dd>
                         </div>
                     </div>
-                    <Link>
                         <button
                             onClick={handleRedeem}
                             type="button"
@@ -189,7 +188,6 @@ export default function Donations() {
                         >
                             Claim Donated Amount
                         </button>
-                    </Link>
                 </div>
             </div>
 
