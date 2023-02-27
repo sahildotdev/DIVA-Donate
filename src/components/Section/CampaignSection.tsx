@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {useEffect, useState} from "react";
 import {ethers} from "ethers";
-import {DivaABI} from "../../abi";
+import {DivaABI, ERC20ABI} from "../../abi";
 import {formatUnits} from "ethers/lib/utils";
 import {useAccount} from "wagmi";
 import {useERC20Contract} from "../../utils/hooks/useContract";
@@ -13,6 +13,7 @@ export const CampaignSection = () => {
   const [toGo, setToGo] = useState<number>(0);
   const [percentage, setPercentage] = useState<number>(0);
   const [expiryDate, setExpiryDate] = useState<string>("");
+  const [longToken, setLongToken] = useState<string>("");
   const [decimals, setDecimals] = useState();
   const divaContractAddress = "0xFf7d52432B19521276962B67FFB432eCcA609148";
   const { address: activeAddress } = useAccount();
@@ -20,7 +21,28 @@ export const CampaignSection = () => {
 
   const usdtTokenContract = useERC20Contract(collateralTokenAddress);
   const poolId = 1;
-
+  const handleAddMetaMask = async (e) => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const token = new ethers.Contract(longToken, ERC20ABI, provider.getSigner())
+    const decimal = await token.decimals()
+    try {
+      await window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: 'ERC20',
+          options: {
+            address: activeAddress,
+            symbol: 'S-'+poolId, // A ticker symbol or shorthand, up to 5 chars.
+            decimals: decimal,
+            image:
+                'https://res.cloudinary.com/dphrdrgmd/image/upload/v1641730802/image_vanmig.png',
+          },
+        } as any,
+      })
+    } catch (error) {
+      console.error('Error in HandleAddMetaMask', error)
+    }
+  }
 
   useEffect(() => {
     const getDecimals = async () => {
@@ -35,6 +57,7 @@ export const CampaignSection = () => {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       const divaContract = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
       divaContract.getPoolParameters(poolId).then((res) => {
+        setLongToken(res.longToken)
         setExpiryDate(new Date(Number(res.expiryTime)*1000).toLocaleDateString(undefined,{ day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', hour12: true, timeZoneName: 'short' }));
         setGoal(Number(formatUnits(res.capacity, decimals)));
         setRaised(Number(formatUnits(res.collateralBalance, decimals)));
@@ -58,7 +81,7 @@ export const CampaignSection = () => {
           </p>
           <hr className="w-48 h-[8px] mx-auto bg-[#9FC131] border-0 rounded-[20px] mt-5" />
         </div>
-        <div className="flex flex-row  justify-evenly ">
+        <div className="flex flex-row gap-10 justify-center ">
           <div className="max-w-sm mb-10 bg-[#DEEFE7] border border-gray-200 rounded-[16px] shadow-md ">
             <a href="#">
               <Image
@@ -81,8 +104,8 @@ export const CampaignSection = () => {
                 Fortune DIVA
               </h5>
 
-              <div className="text-indigo-600 flex items-center dark:text-indigo-400">
-                <span className="text-slate-400 font-normal">#S1234</span>
+              <div onClick={handleAddMetaMask} className="text-indigo-600 flex items-center dark:text-indigo-400">
+                <span className="text-slate-400 font-normal">#{poolId}</span>
 
                 <svg
                   width="16"

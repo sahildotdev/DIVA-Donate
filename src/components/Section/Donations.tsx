@@ -98,7 +98,7 @@ export default function Donations() {
 
 
     return (
-        <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] mx-auto px-4">
+        <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] my-auto mx-auto px-4">
             <div className="max-w-sm mb-10 bg-[#DEEFE7] mx-auto border border-gray-200 rounded-[16px] shadow-md ">
                 <a href="#">
                     <Image
@@ -181,7 +181,7 @@ export default function Donations() {
                             </dd>
                         </div>
                     </div>
-                    <Link href="/campaign">
+                    <Link>
                         <button
                             onClick={handleRedeem}
                             type="button"

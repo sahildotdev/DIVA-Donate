@@ -11,11 +11,9 @@ export default function Campaign() {
         <main className="h-full w-full relative">
             <nav>
                 <Navbar />
-                <div className="bg-[#F3FDF8]">
+                <div className="justify-center yx-auto pt-[5rem] pb-[15rem] bg-[#F3FDF8]">
                     <Donations />
                 </div>
-                <LinkSection />
-
                 <FooterSection />
             </nav>
         </main>

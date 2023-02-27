@@ -3,9 +3,9 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="relative justify-center bg-[#F3FDF8] bg-no-repeat bg-right">
-      <div className="container mx-auto gap-2 flex justify-center items-center content-center sm:pt-[8rem] md:pt-[8rem] py-8 md:py-24 ">
-        <div className="flex flex-col justify-center text-center rounded-sm lg:text-left">
+    <section className="relative justify-center bg-[#F3FDF8]">
+      <div className="container mx-auto gap-[7rem] flex justify-center sm:pt-[8rem] md:pt-[8rem] ">
+        <div className="flex flex-col justify-center rounded-sm lg:text-left">
           <h1 className="text-[40px] md:text-[80px] font-semibold text-[#042940] font-lora">
             Event-Driven
             <br /> Conditional
@@ -37,7 +37,7 @@ export default function HeroSection() {
             </Link>
           </div>
         </div>
-        <div className="p-6 mt-18 ">
+        <div className=" z-20 mt-[1rem] -mb-[5rem]">
           <div>
             <Image
                 className="object-contain"

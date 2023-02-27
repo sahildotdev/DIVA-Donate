@@ -12,7 +12,7 @@ export const InfoSection = () => (
       </p>
       <hr className="w-[15rem] md:w-[25rem] h-[8px] mx-auto bg-[#9FC131] border-0 rounded-[20px] mt-6" />
     </div>
-    <div className="container flex flex-col lg:flex-row justify-center md:justify-around mx-auto p-6 ">
+    <div className="container mt-10 flex flex-col lg:flex-row justify-center md:justify-around mx-auto p-6 ">
       <Image
         className="w-[520px] h-[560px]"
         width="520"
