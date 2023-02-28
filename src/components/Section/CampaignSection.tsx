@@ -106,7 +106,7 @@ export const CampaignSection = () => {
 
               <div onClick={handleAddMetaMask} className="text-indigo-600 flex items-center dark:text-indigo-400">
                 <span className="text-slate-400 font-normal">#{poolId}</span>
-                <Link href="">
+                <button >
                   <svg
                       width="16"
                       height="16"
@@ -127,7 +127,7 @@ export const CampaignSection = () => {
                       </clipPath>
                     </defs>
                   </svg>
-                </Link>
+                </button>
 
               </div>
 
