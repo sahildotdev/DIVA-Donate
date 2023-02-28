@@ -12,7 +12,7 @@ const links = [
   },
   {
     to: "/campaign",
-    name: "Campaigns",
+    name: "Pilot Campaign",
   },
   {
     to: "/donations",
