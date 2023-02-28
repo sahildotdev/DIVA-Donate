@@ -2,66 +2,107 @@ import React from 'react'
 
 export const faqData = [
 	{
+		title: 'What is DIVA Donate?',
+		body: (
+			<>
+					DIVA Donate is a platform that utilizes the blockchain technology to 
+					enable cost-efficient, transparent and trustless donations. Donations are 
+					released depending on the outcome of a pre-defined publicly verifiable metric.
+			</>
+		),
+	},
+	{
 		title: 'What is DIVA Protocol?',
 		body: (
-			<>
-					DIVA Protocol is the first truly universal and flexible smart contract
-					based operating system for derivative applications. With DIVA
-					Protocol, developers can build a wide range of derivative
-					applications, including insurance, structured products, prediction
-					markets, conditional donations, and swaps, all in a permissionless and
-					trustless way, without requiring smart contract programming skills.
+			<>					
+					DIVA Protocol is a highly flexible and universal smart contract
+					based operating system for derivative applications. It is used in DIVA Donate to manage 
+					the transactional layer of the donation cycle. <a
+						href='https://docs.divaprotocol.io/'
+						className='underline mx-1'
+						target={'_blank'} rel="noreferrer">
+						Learn more
+					</a>.
 			</>
 		),
 	},
 	{
-		title: 'Which problem does DIVA Protocol solve?',
+		title: 'What are conditional donations?',
 		body: (
 			<>
-					The traditional way of creating and managing derivative products
-					relies on centralized intermediaries. This introduces counterparty
-					risk, where the users&apos; funds are at risk if the intermediary
-					defaults or becomes insolvent. This also creates a barrier of entry as
-					the creation and management of derivative products is typically
-					reserved for banks and not easily accessible for normal individuals.
-					Another issue is reduced liquidity as these products are issued in
-					isolated systems which means assets are typically not tradeable
-					outside of the issuer&apos;s infrastructure.
-					<br></br>
-					<br></br>
-					DIVA Protocol is a smart contract-based operating system that
-					addresses these issues. DIVA Protocol eliminates reliance on
-					intermediaries, improves security by fully collateralizing products
-					and eliminates counterparty risk. Additionally, it expands access to
-					the creation of derivative products to a wider range of users, and
-					improves liquidity by opening up the infrastructure layer for
-					derivatives.
+					Conditional donations differ from direct donations in that they come with 
+					certain conditions attached. These conditions specify under which circumstances 
+					funds will be released to the recipient. For example, a donation may be 
+					conditioned on the rain amount over a certain period of time in a given 
+					area. If it falls below a predefined level that is associated with drought, 
+					the donation will be triggered to financially support the people affected. 
+					If it stays above that level, no donation will be triggered. Conditional donations
+					is comparable to an insurance that doesn't require the recipient to pay a premium.
 			</>
 		),
 	},
 	{
-		title: 'What can I build on top of DIVA Protocol?',
+		title: 'What are the benefits of conditional donations?',
 		body: (
 			<>
-				With DIVA Protocol, users can build a wide range of derivative
-				applications, including insurance, structured products, prediction
-				markets, conditional donations, and swaps, all in a permissionless and
-				trustless way. One of the unique features is the possibility to impose
-				transfer restrictions on derivative assets, which makes it particularly
-				well-suited for traditional financial institutions that must comply with
-				KYC and AML regulations.
-      </>
+				Conditional donations can provide a number of benefits compared to direct donations:
+				<ul>
+					<li> > <b>Greater control:</b> Because the terms of the donation are specified upfront, donors can ensure that 
+					their funds are used in a way that aligns with their values and priorities. This can be particularly 
+					useful for donors who want to support specific causes or who have specific goals in mind for their donation.</li>
+					<li> > <b>Based on need:</b> Conditional donations are only released if recipient’s are in actual need. This 
+					can help to ensure that the funds are used in the most effective way possible and can help to 
+					maximize the positive impact of the donation.</li>
+					<li> > <b>Greater impact:</b> Unused funds can be redeployed into new conditional donation campaigns, thereby 
+					maximizing the impact and reach of the donation.</li>
+					<li> > <b>Verifiable:</b> The underlying trigger events are publicly verifiable and the release of the donation 
+					is detached from any potential external bias.</li>
+				</ul>			
+      		</>
 		),
 	},
 	{
-		title: 'How can I get started?',
+		title: 'How does it work?',
 		body: (
 			<>
-				Head over to the <a
-					href='https://www.divaprotocol.io/dapps'
+				The DIVA smart contract manages the full conditional donation cycle in a trustless 
+				and predictable manner. It allows donors to deposit funds (e.g., in 
+				the form of stablecoins such as USDT or other digital assets) and issue tokenized 
+				contingent claims to beneficiaries, data providers to report event outcomes 
+				and beneficiaries to claim their share in the donation after the outcome has been 
+				reported and the payout has been determined by the DIVA smart contract. Any 
+				unused funds can be claimed by the donor and redeployed into a new conditional donation campaign.
+      		</>
+		),
+	},
+	{
+		title: 'How can I start donating?',
+		body: (
+			<>
+				In order to start donating or interacting with decentralized applications, there is a one-off setup process.
+				To start donating, you will need three things: <a
+					href='https://metamask.io/'
 					className='underline mx-1'
 					target={'_blank'} rel="noreferrer">
-					DIVA dApps
+					Metamask
+				</a> installed.
+				
+				MATIC to cover the transaction fees. Reach out and we will send you a bit to save you this step.
+
+				Fund your wallet with USDT.
+      		</>
+		),
+	},
+	{
+		title: 'Why do I have to approve before donating?',
+		body: (
+			<>
+				In order to donate, 
+				Pick one of the <a
+					href='https://www.divadonate.xyz'
+					className='underline mx-1'
+					target={'_blank'} rel="noreferrer">
+					campaigns
 				</a> page to explore all the
 				applications that have been already built on top of DIVA Protocol.
 				<br></br>
