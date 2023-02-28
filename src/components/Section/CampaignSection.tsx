@@ -194,7 +194,7 @@ export const CampaignSection = () => {
               <p className="mb-3 font-normal text-[#000000]">
                 Get in touch with us to list your campaign
               </p>
-              <Link href="">
+              <Link href = "mailto: wladimir.weinbender@divadonate.xyz">
                 <button className="inline-block font-openSans rounded-lg px-4 py-1.5 text-base font-semibold text-[#042940] ring-1 ring-[#042940]">
                   Contact Us
                 </button>
