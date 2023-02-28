@@ -6,7 +6,10 @@ export const faqData = [
 		body: (
 			<>
 					DIVA Donate is a platform that utilizes the blockchain technology to 
-					enable cost-efficient, transparent and trustless donations. Donations are 
+					enable cost-efficient, transparent and trustless donations. DIVA Donate is a collaboration
+					between Fortune connect, a financial inclusion hub for farmers in Kenya,
+					DIVA Technologies AG, a 
+					Donations are 
 					released depending on the outcome of a pre-defined publicly verifiable metric.
 			</>
 		),
