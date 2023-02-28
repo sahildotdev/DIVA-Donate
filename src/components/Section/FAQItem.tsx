@@ -21,7 +21,7 @@ const FAQItem = ({ title, body }) => (
   >
     {({ isExpanded }) => (
       <>
-        <AccordionButton>
+        <AccordionButton _hover="none">
           <Box
             flex="1"
             textAlign="left"

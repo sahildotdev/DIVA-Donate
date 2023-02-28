@@ -127,7 +127,7 @@ export default function Donations() {
                     />
                     <div className="relative -mt-10">
                         <div className="text-lg pl-2 bg-[#DBF227] w-[320px] h-[40px] rounded-tr-[3.75rem] text-left text-green-[#042940] w-[320px]">
-                            <span className="mt-1 font-light inline-block align-middle">
+                            <span className="mt-1 inline-block align-middle">
                               Expiry: {expiryDate}
                             </span>
                         </div>

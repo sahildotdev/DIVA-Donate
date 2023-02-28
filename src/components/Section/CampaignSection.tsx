@@ -6,7 +6,7 @@ import {DivaABI, ERC20ABI} from "../../abi";
 import {formatUnits} from "ethers/lib/utils";
 import {useAccount} from "wagmi";
 import {useERC20Contract} from "../../utils/hooks/useContract";
-import {Text, Progress, ProgressLabel} from "@chakra-ui/react";
+import {Text, Progress, ProgressLabel, extendTheme, Button} from "@chakra-ui/react";
 
 export const CampaignSection = () => {
   const [goal, setGoal] = useState<number>(0);
@@ -93,7 +93,7 @@ export const CampaignSection = () => {
               />
               <div className="relative -mt-10">
                 <div className="text-lg pl-2 bg-[#DBF227] w-[320px] h-[40px] rounded-tr-[3.75rem] text-left text-green-[#042940] w-[320px]">
-                  <span className="inline-block align-middle">
+                  <span className="mt-1 inline-block align-middle">
                     Expiry: {expiryDate}
                   </span>
                 </div>
@@ -106,27 +106,29 @@ export const CampaignSection = () => {
 
               <div onClick={handleAddMetaMask} className="text-indigo-600 flex items-center dark:text-indigo-400">
                 <span className="text-slate-400 font-normal">#{poolId}</span>
+                <button >
+                  <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="ml-2"
+                  >
+                    <g cliPath="url(#clip0_270_567)">
+                      <path
+                          d="M8 0C6.41775 0 4.87103 0.469192 3.55544 1.34824C2.23985 2.22729 1.21447 3.47672 0.608967 4.93853C0.00346629 6.40034 -0.15496 8.00888 0.153721 9.56072C0.462403 11.1126 1.22433 12.538 2.34315 13.6569C3.46197 14.7757 4.88743 15.5376 6.43928 15.8463C7.99113 16.155 9.59966 15.9965 11.0615 15.391C12.5233 14.7855 13.7727 13.7602 14.6518 12.4446C15.5308 11.129 16 9.58225 16 8C15.9977 5.87897 15.1541 3.84547 13.6543 2.34568C12.1545 0.845886 10.121 0.00229405 8 0V0ZM10.6667 8.66667H8.66667V10.6667C8.66667 10.8435 8.59643 11.013 8.47141 11.1381C8.34638 11.2631 8.17682 11.3333 8 11.3333C7.82319 11.3333 7.65362 11.2631 7.5286 11.1381C7.40358 11.013 7.33334 10.8435 7.33334 10.6667V8.66667H5.33334C5.15653 8.66667 4.98696 8.59643 4.86193 8.47141C4.73691 8.34638 4.66667 8.17681 4.66667 8C4.66667 7.82319 4.73691 7.65362 4.86193 7.5286C4.98696 7.40357 5.15653 7.33333 5.33334 7.33333H7.33334V5.33333C7.33334 5.15652 7.40358 4.98695 7.5286 4.86193C7.65362 4.73691 7.82319 4.66667 8 4.66667C8.17682 4.66667 8.34638 4.73691 8.47141 4.86193C8.59643 4.98695 8.66667 5.15652 8.66667 5.33333V7.33333H10.6667C10.8435 7.33333 11.0131 7.40357 11.1381 7.5286C11.2631 7.65362 11.3333 7.82319 11.3333 8C11.3333 8.17681 11.2631 8.34638 11.1381 8.47141C11.0131 8.59643 10.8435 8.66667 10.6667 8.66667Z"
+                          fill="#898989"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_270_567">
+                        <rect width="16" height="16" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </button>
 
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="ml-2"
-                >
-                  <g cliPath="url(#clip0_270_567)">
-                    <path
-                      d="M8 0C6.41775 0 4.87103 0.469192 3.55544 1.34824C2.23985 2.22729 1.21447 3.47672 0.608967 4.93853C0.00346629 6.40034 -0.15496 8.00888 0.153721 9.56072C0.462403 11.1126 1.22433 12.538 2.34315 13.6569C3.46197 14.7757 4.88743 15.5376 6.43928 15.8463C7.99113 16.155 9.59966 15.9965 11.0615 15.391C12.5233 14.7855 13.7727 13.7602 14.6518 12.4446C15.5308 11.129 16 9.58225 16 8C15.9977 5.87897 15.1541 3.84547 13.6543 2.34568C12.1545 0.845886 10.121 0.00229405 8 0V0ZM10.6667 8.66667H8.66667V10.6667C8.66667 10.8435 8.59643 11.013 8.47141 11.1381C8.34638 11.2631 8.17682 11.3333 8 11.3333C7.82319 11.3333 7.65362 11.2631 7.5286 11.1381C7.40358 11.013 7.33334 10.8435 7.33334 10.6667V8.66667H5.33334C5.15653 8.66667 4.98696 8.59643 4.86193 8.47141C4.73691 8.34638 4.66667 8.17681 4.66667 8C4.66667 7.82319 4.73691 7.65362 4.86193 7.5286C4.98696 7.40357 5.15653 7.33333 5.33334 7.33333H7.33334V5.33333C7.33334 5.15652 7.40358 4.98695 7.5286 4.86193C7.65362 4.73691 7.82319 4.66667 8 4.66667C8.17682 4.66667 8.34638 4.73691 8.47141 4.86193C8.59643 4.98695 8.66667 5.15652 8.66667 5.33333V7.33333H10.6667C10.8435 7.33333 11.0131 7.40357 11.1381 7.5286C11.2631 7.65362 11.3333 7.82319 11.3333 8C11.3333 8.17681 11.2631 8.34638 11.1381 8.47141C11.0131 8.59643 10.8435 8.66667 10.6667 8.66667Z"
-                      fill="#898989"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_270_567">
-                      <rect width="16" height="16" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
               </div>
 
               <div className="mb-5 border-b-2 border-[#9FC131]">
@@ -141,7 +143,7 @@ export const CampaignSection = () => {
               {/*<div className="mb-3 w-full bg-[#D6D58E] rounded-[10px]">*/}
                 {/*<div className='bg-[#005C53] text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full'*/}
                 {/*     style={{width: percentage+'%'}}>*/}
-                <Progress className=" mb-3 rounded-[15px]" style={{background: '#D6D58E'}} colorScheme='green' height='22px' value={percentage} >
+                <Progress className=" mb-3 rounded-[15px]" style={{background: '#D6D58E'}} colorScheme="green" height='22px' value={percentage} >
                   <ProgressLabel className="text-2xl flex flex-start">
                     <Text fontSize="xs">{percentage.toFixed(2)}%</Text>
                   </ProgressLabel>
@@ -203,6 +205,7 @@ export const CampaignSection = () => {
           </div>
         </div>
       </div>
+
     </section>
   );
 };
