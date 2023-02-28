@@ -6,7 +6,7 @@ import {DivaABI, ERC20ABI} from "../../abi";
 import {formatUnits} from "ethers/lib/utils";
 import {useAccount} from "wagmi";
 import {useERC20Contract} from "../../utils/hooks/useContract";
-import {Text, Progress, ProgressLabel} from "@chakra-ui/react";
+import {Text, Progress, ProgressLabel, extendTheme, Button} from "@chakra-ui/react";
 
 export const CampaignSection = () => {
   const [goal, setGoal] = useState<number>(0);
@@ -93,7 +93,7 @@ export const CampaignSection = () => {
               />
               <div className="relative -mt-10">
                 <div className="text-lg pl-2 bg-[#DBF227] w-[320px] h-[40px] rounded-tr-[3.75rem] text-left text-green-[#042940] w-[320px]">
-                  <span className="inline-block align-middle">
+                  <span className="mt-1 inline-block align-middle">
                     Expiry: {expiryDate}
                   </span>
                 </div>
@@ -141,7 +141,7 @@ export const CampaignSection = () => {
               {/*<div className="mb-3 w-full bg-[#D6D58E] rounded-[10px]">*/}
                 {/*<div className='bg-[#005C53] text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full'*/}
                 {/*     style={{width: percentage+'%'}}>*/}
-                <Progress className=" mb-3 rounded-[15px]" style={{background: '#D6D58E'}} colorScheme='green' height='22px' value={percentage} >
+                <Progress className=" mb-3 rounded-[15px]" style={{background: '#D6D58E'}} colorScheme="green" height='22px' value={percentage} >
                   <ProgressLabel className="text-2xl flex flex-start">
                     <Text fontSize="xs">{percentage.toFixed(2)}%</Text>
                   </ProgressLabel>
@@ -175,6 +175,9 @@ export const CampaignSection = () => {
                   </dd>
                 </div>
               </div>
+              <div>
+                <Button colorScheme="green 100">Click me</Button>
+              </div>
               <Link href="/campaign">
                 <button
                   type="button"
@@ -203,6 +206,7 @@ export const CampaignSection = () => {
           </div>
         </div>
       </div>
+
     </section>
   );
 };
