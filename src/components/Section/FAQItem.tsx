@@ -9,7 +9,8 @@ import { MinusIcon, AddIcon } from "@chakra-ui/icons";
 
 const FAQItem = ({ title, body }) => (
   <AccordionItem
-    bgGradient={"linear(to-r, #303030 0%, #1B1B1B 100%)"}
+    // bgGradient={"linear(to-r, #303030 0%, #1B1B1B 100%)"}
+    background={'#DEEFE7'}
     borderRadius="16px"
     border={"none"}
     px={5}
@@ -26,19 +27,19 @@ const FAQItem = ({ title, body }) => (
             textAlign="left"
             fontWeight={["350", "350", "350", "700", "700"]}
             fontSize={["22px", "22px", "30px", "30px", "30px"]}
-            color="white"
+            color="#042940"
           >
             {title}
           </Box>
           {isExpanded ? (
-            <MinusIcon color="white" fontSize="12px" />
+            <MinusIcon color="green" fontSize="12px" />
           ) : (
-            <AddIcon color="white" fontSize="12px" />
+            <AddIcon color="green" fontSize="12px" />
           )}
         </AccordionButton>
         <AccordionPanel
           fontSize={["18px", "18px", "24px", "24px", "24px"]}
-          color="#A4A4A4"
+          color="#042940"
           textAlign="left"
         >
           {body}

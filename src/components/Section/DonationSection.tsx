@@ -12,8 +12,8 @@ export const DonationSection = () => {
 
       <div className="grid items-center justify-center px-4 py-8 lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         <div className="mr-auto lg:col-span-7">
-          <div className="relative rounded-xl overflow-auto p-8">
-            <div className="overflow-visible relative max-w-xl mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
+          <div className=" rounded-xl p-8 ">
+            <div className="pr-[15rem] w-full overflow-visible relative mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
               <Image
                 className="absolute -left-8 w-24 h-24 rounded-full shadow-lg"
                 src="/Images/rain.png"
@@ -32,7 +32,7 @@ export const DonationSection = () => {
             </div>
           </div>
           <div className="relative rounded-xl overflow-auto p-8">
-            <div className="overflow-visible relative max-w-xl mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
+            <div className="pr-[15rem] w-full overflow-visible relative mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
               <Image
                 className="absolute -left-8 w-24 h-24 rounded-full shadow-lg"
                 src="/Images/Expiry.png"
@@ -51,7 +51,7 @@ export const DonationSection = () => {
             </div>
           </div>
           <div className="relative rounded-xl overflow-auto p-8">
-            <div className="overflow-visible relative max-w-xl mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
+            <div className="pr-[15rem] w-full overflow-visible relative mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
               <Image
                 className="absolute -left-8 w-24 h-24 rounded-full shadow-lg"
                 src="/Images/Reporter.png"
@@ -70,7 +70,7 @@ export const DonationSection = () => {
             </div>
           </div>
           <div className="relative rounded-xl overflow-auto p-8">
-            <div className="overflow-visible relative max-w-xl mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
+            <div className="pr-[15rem] w-full overflow-visible relative mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
               <Image
                 className="absolute -left-8 w-24 h-24 rounded-full shadow-lg"
                 src="/Images/Data.png"

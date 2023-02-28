@@ -22,7 +22,7 @@ export const CampaignSection = () => {
 
   const usdtTokenContract = useERC20Contract(collateralTokenAddress);
   const poolId = 1;
-  const handleAddMetaMask = async (e) => {
+  const handleAddMetaMask = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const token = new ethers.Contract(longToken, ERC20ABI, provider.getSigner())
     const decimal = await token.decimals()
@@ -185,8 +185,8 @@ export const CampaignSection = () => {
               </Link>
             </div>
           </div>
-          <div className="max-w-sm max-h-xl mb-10 p-5 text-center bg-[#DEEFE7] border border-gray-200 rounded-[16px] shadow-md ">
-            <div className="">
+          <div className="max-w-sm max-h-xl mb-10 p-5 justify-center items-center text-center bg-[#DEEFE7] border border-gray-200 rounded-[16px] shadow-md ">
+            <div className="justify-center mt-[17rem]">
               {" "}
               <h5 className="mb-2 text-2xl font-bold text-gray-900 text-[#042940]">
                 More campaigns coming soon!

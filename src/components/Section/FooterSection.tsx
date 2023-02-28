@@ -51,7 +51,7 @@ export const FooterSection = () => (
         <a
           rel={"noopener noreferrer"}
           target="_blank"
-          href="https://twitter.com/divaprotocol_io"
+          href="https://twitter.com/DIVADonate_xyz"
           className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
         >
           <svg

@@ -1,18 +1,14 @@
-import Link from "next/link";
 import {useEffect, useState} from "react";
-import {
-  useERC20Contract,
-  useDivaContract,
-} from "../../utils/hooks/useContract";
-import {getSigner, getTokenBalance, valueFormatter} from "../../utils/general";
+import {useERC20Contract} from "../../utils/hooks/useContract";
+import {getTokenBalance} from "../../utils/general";
 import {ethers} from "ethers";
-import {formatEther, formatUnits, parseEther, parseUnits} from "ethers/lib/utils";
+import {formatUnits, parseUnits} from "ethers/lib/utils";
 import {useAccount, useFeeData} from "wagmi";
 import {DivaABI} from "../../abi";
 
 export const CampaingCard = () => {
   const [balance, setBalance] = useState(0);
-  const { data, isError, isLoading } = useFeeData({chainId:137})
+  const { data } = useFeeData({chainId:137})
   const [amount, setAmount] = useState<number>();
   const [goal, setGoal] = useState<number>(0);
   const [raised, setRaised] = useState<number>(0);
@@ -100,7 +96,6 @@ export const CampaingCard = () => {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       const divaContract = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
       const decimals = await usdtTokenContract.decimals();
-      const allowance = await usdtTokenContract.allowance(activeAddress, divaContractAddress);
       setDonateLoading(true);
       divaContract.addLiquidity(poolId, parseUnits(amount!.toString(), decimals), activeAddress, walletAddress,{gasPrice: data?.maxFeePerGas}).then(
           (tx) => {
@@ -133,10 +128,10 @@ export const CampaingCard = () => {
     }
   }, [activeAddress, donateLoading]);
   return (
-    <div className="container pt-[5rem] sm:pt-[8rem] md:pt-[8rem] justify-center mx-auto">
-      <div className="grid px-12 gap-2 mx-auto lg:py-16 lg:grid-cols-9">
+    <div className="container relative pt-[5rem] sm:pt-[8rem] md:pt-[8rem]  mx-auto">
+      <div className="grid px-12 gap-[2rem] mx-auto lg:py-16 lg:grid-cols-9">
         <div className="mx-auto lg:mt-0 lg:col-span-4 lg:flex">
-          <div className=" sm-bg-auto bg-cover bg-center bg-no-repeat rounded-[32px] bg-[url('/Images/pastrolists400pxVertical.png')] rounded-lg ">
+          <div className=" sm-bg-auto bg-cover bg-center bg-no-repeat rounded-[28px] bg-[url('/Images/pastrolists400pxVertical.png')] rounded-lg ">
             <div className="p-8 relative top-[28rem] text-[#DEEFE7] ">
               <h5 className="font-semibold text-4xl font-['lora']">
                 Fortune DIVA
@@ -152,8 +147,8 @@ export const CampaingCard = () => {
             </div>
           </div>
         </div>
-        <div className="lg:col-span-5">
-          <div className=" flex flex-col">
+        <div className="lg:col-span-5 mr-[2rem]">
+          <div className="  flex-col">
             <div className=" mx-auto pb-12 bg-[#FFFFFF] border border-gray-200 rounded-[26px] drop-shadow-xl ">
               <div className="justify-evenly p-[60px] ">
                 <div className="mb-10">
@@ -224,7 +219,7 @@ export const CampaingCard = () => {
                               items-center dark:bg-green-800 "
                                 type="button">
                           <div className="pr-2">
-                            <svg width="20" height="20" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/1999/xlink">
+                            <svg width="20" height="20" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <circle cx="12" cy="12.3333" r="12" fill="url(#pattern0)"/>
                               <defs>
                                 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
