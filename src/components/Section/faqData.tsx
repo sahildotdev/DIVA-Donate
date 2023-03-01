@@ -132,7 +132,7 @@ export const faqData = [
 						href='https://www.binance.com/en'
 						className='underline mx-1'
 						target={'_blank'} rel="noreferrer">
-						here.
+						here
 					</a>.</li>					
 				</ul>			
       		</>
