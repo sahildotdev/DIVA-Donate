@@ -9,7 +9,7 @@ import {FooterSection} from "../components/Section/FooterSection";
 
 export default function Home() {
   return (
-    <main className="sm:h-full sm:w-full sm:relative">
+    <main className="h-full w-full relative">
           <div className="invisible hidden sm:block sm:visible">
               <Layout>
                 <HeroSection />
