@@ -92,9 +92,9 @@ export const CampaignSection = () => {
                 alt="Modern building architecture"
               />
               <div className="relative -mt-10">
-                <div className="text-lg pl-2 bg-[#DBF227] w-[320px] h-[40px] rounded-tr-[3.75rem] text-left text-green-[#042940] w-[320px]">
+                <div className="text-2xs pt-1 pl-2 bg-[#DBF227] w-[320px] h-[40px] rounded-tr-[3.75rem] text-left text-green-[#042940] w-[320px]">
                   <span className="mt-1 inline-block align-middle">
-                    Expiry: {expiryDate}
+                    <b>Expiry:</b> {expiryDate}
                   </span>
                 </div>
               </div>
@@ -133,10 +133,8 @@ export const CampaignSection = () => {
 
               <div className="mb-5 border-b-2 border-[#9FC131]">
                 <p className="mb-3 font-normal text-[#000000]">
-                  A conditional donation compaign to provide insurance to
-                  farmers against damage caused by insufficient rain in Africa.
-                  This campaign aims to support more than 150 farmers across
-                  Africa.
+                  A conditional donation campaign to provide insurance to 100 pastoralists
+                  in Kenya to financially assist them in case of drought.
                 </p>
               </div>
 
@@ -182,7 +180,7 @@ export const CampaignSection = () => {
                   type="button"
                   className="text-white bg-[#042940] hover:bg-blue-700 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
                 >
-                  View Campaigns
+                  View Campaign
                 </button>
               </Link>
             </div>

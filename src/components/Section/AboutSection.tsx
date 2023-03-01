@@ -12,14 +12,15 @@ export const AboutSection = () => (
           <ul className="list-none font-[Open Sans] text-base font-normal mb-8 ">
             <li>
               {" "}
-              The campaign is a collaborative effort between Fortune Connect and
-              DIVA Technologies AG using DIVA Protocol as the underlying smart
-              contract technology.
+              The campaign is a collaborative effort between Fortune Connect, DIVA Technologies AG and 
+              Shamba network to financially assist pastoralists in the Eastern Horn 
+              of Africa in the event of drought, as measured by the Normalized Difference Vegetation Index (NDVI). <a
+              href="https://www.divaprotocol.io/posts/diva-conditional-donations"
+              className="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700"
+            >
+              Learn more
+            </a>
             </li>{" "}
-            <li>
-              This product will benefit farmers (pastoralists) in the Eastern
-              Horn of Africa in case of extreme drought as measured by the NDVI.
-            </li>
           </ul>
 
           <h1 className="font-semibold text-2xl font-['lora'] text-[#042940] m-auto leading-normal mb-2">
@@ -45,15 +46,16 @@ export const AboutSection = () => (
             <li>Pastoralists in Kenya</li>
           </ul>
           <div className="font-semibold text-2xl font-['lora'] text-[#042940] m-auto leading-normal mb-2">
-            Trigger event
+            Trigger metric
           </div>
           <ul className="list-disc mb-8">
-            NDVI which stands for Normalized Difference Vegetation Index and is
-            the most used metric to measure vegetation. The NDVI serves as a
-            proxy for livestock death. The lower the value, the higher the
-            likelihood of livestock death.{" "}
+            The average Normalized Difference Vegetation Index (NDVI), observed during the period 1 March - 31 May 2023, 
+            will serve as the trigger metric and reported by the Shamba oracle on 11th June (for technical reasons shifted by 1). 
+            It is a widely used metric which is calculated from satellite data to measure vegetation. 
+            Higher values indicate a greater density of healthy vegetation, while lower values indicate 
+            that plants in an area are experiencing drought stress. {" "}
             <a
-              href="#"
+              href="https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index"
               className="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700"
             >
               Learn more
@@ -62,6 +64,7 @@ export const AboutSection = () => (
           <div className="font-semibold text-2xl font-['lora'] text-[#042940] m-auto leading-normal mb-2">
             Donation scenarios
           </div>
+          <p className="pb-4">The following percentages of the donated USDT amount will be released depending on the reported metric:</p>
           <ul
             role="list"
             className="list-disc marker:text-[#000000] list-disc pl-5 space-y-3  mb-2"
@@ -69,22 +72,21 @@ export const AboutSection = () => (
             <li>
               {" "}
               <a className="font-bold" target="_blank">
-                15,000 USDT{" "}
+                100% {" "}
               </a>
-              if NDVI is
-              <span>&#8924;</span> 0.5
+              if (NDVI) is at or below 1.20
             </li>
             <li>
               <a className="font-bold" target="_blank">
-                7,500 USDT{" "}
+                50% {" "}
               </a>{" "}
-              if NDVI is 0.625
+              if NDVI is at 1.215
             </li>
             <li>
               <a className="font-bold" target="_blank">
-                0 USDT{" "}
+                0%{" "}
               </a>{" "}
-              if NDVI is <span>&#8925;</span> 0.75
+              if NDVI is at or above 1.23
             </li>
           </ul>
         </div>

@@ -132,9 +132,9 @@ export default function Donations() {
                     />
                     <div className="relative -mt-10">
                         <div
-                            className="text-lg pl-2 bg-[#DBF227] w-[320px] h-[40px] rounded-tr-[3.75rem] text-left text-green-[#042940] w-[320px]">
+                            className="text-2xs pt-1 pl-2 bg-[#DBF227] w-[320px] h-[40px] rounded-tr-[3.75rem] text-left text-green-[#042940] w-[320px]">
                             <span className="mt-1 inline-block align-middle">
-                              Expiry: {expiryDate}
+                              <b>Expiry:</b> {expiryDate}
                             </span>
                         </div>
                     </div>
@@ -171,10 +171,8 @@ export default function Donations() {
 
                     <div className="mb-5 border-b-2 border-[#9FC131]">
                         <p className="mb-3 font-normal text-[#000000]">
-                            A conditional donation compaign to provide insurance to
-                            farmers against damage caused by insufficient rain in Africa.
-                            This campaign aims to support more than 150 farmers across
-                            Africa.
+                            A conditional donation campaign to provide livestock insurance to 100 pastoralists
+                            in Kenya to financially assist them in case of drought.
                         </p>
                     </div>
 

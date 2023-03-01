@@ -5,7 +5,7 @@ export const InfoSection = () => (
   <section className="pt-[9rem] ">
     <div className="mx-auto max-w-7xl  px-4 sm:px-6 text-center lg:items-center lg:justify-between">
       <h1 className="font-lora font-semibold text-[30px] md:text-[60px] leading-[76.8px] text-[#042940]">
-        Why conditional donations?
+        Why Conditional Donations?
       </h1>
       <p className="font-semibold font-openSans text-[15px] md:text-[20px] mt-6 text-[#005C53] ">
         Increasing effectiveness
@@ -21,9 +21,9 @@ export const InfoSection = () => (
         alt="Conditional Donation"
       />
 
-      <div className="grid gap-5 lg:gap-[32px] grid-rows-3 pt-7 lg:pt-0">
+      <div className="w-full p-[2rem] pb-[2rem] grid gap-2 lg:gap-[24px] grid-rows-3">
         <InfoCard
-          cardPadding=" md:p-8"
+          cardPadding="p-4 md:p-6"
           cardWidth="w-auto md:w-full"
           cardRadius="20px"
           title="Targeted"
@@ -36,26 +36,26 @@ export const InfoSection = () => (
         />
 
         <InfoCard
-          cardPadding="p-4 md:p-8"
+          cardPadding="p-4 md:p-6"
           cardWidth="w-auto md:w-full"
           cardRadius="20px"
           title="Parametric"
           paragraph="The underlying event is measurable and its verification is detached from any potential external bias"
           paragraphColor="text-[#042940]"
-          titleSize="text-3xl md:text-5xl"
+          titleSize="text-[23px] md:text-[46px]"
           paragraphSize="text-sm md:text-base"
           titleColor="text-[#042940]"
           cardColor="bg-[#DEEFE7]"
         />
 
         <InfoCard
-          cardPadding="p-4 md:p-8"
+          cardPadding="p-4 md:p-6"
           cardWidth="w-auto md:w-full"
           cardRadius="20px"
           title="Pro-active"
           paragraph="Reduces delays in fund release as available resources have been deposited in advance"
           paragraphColor="text-[#042940]"
-          titleSize="text-3xl md:text-5xl"
+          titleSize="text-[23px] md:text-[46px]"
           paragraphSize="text-sm md:text-base"
           titleColor="text-[#042940]"
           cardColor="bg-[#DEEFE7]"
