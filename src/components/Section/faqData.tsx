@@ -20,13 +20,16 @@ export const faqData = [
 							href='https://www.divaprotocol.io/'
 							className='underline mx-1'
 							target={'_blank'} rel="noreferrer">							
-						DIVA Technologies AG</a>:</b> A Swiss based software consulting focused on Web3.</li>
+						DIVA Technologies AG</a>:</b> A Swiss based software consulting firm focused on Web3.</li>
 						<li> > <b><a 
 							href='https://shamba.network/'
 							className='underline mx-1'
 							target={'_blank'} rel="noreferrer">
 						Shamba Network</a>:</b> An oracle provider serving geospatial data to smart contracts.</li>
-					</ul>					
+					</ul>			
+					<br></br>
+					Our mission is to empower the most vulnerable communities impacted by climate change utilizing 
+					the transformative power of blockchain technology.
 			</>
 		),
 	},
@@ -38,7 +41,7 @@ export const faqData = [
 					certain conditions attached. These conditions specify under which circumstances 
 					funds will be released to the recipient. For example, a donation may be 
 					conditioned on the rain amount over a certain period of time in a given 
-					area. If it falls below a predefined level that is associated with drought, 
+					region. If it falls below a predefined level that is associated with drought, 
 					the donation will be triggered to financially support the people affected. 
 					If it stays above that level, no donation will be triggered. Conditional donations
 					are comparable to insurance with the difference that former is free of charge for the recipient
