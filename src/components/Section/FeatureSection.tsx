@@ -40,7 +40,7 @@ export const FeatureSection = () => (
           cardWidth="w-auto md:w-full"
           cardRadius="20px"
           title="Trustless"
-          paragraph="Funds are held in an programmatic escrow eliminating the risk of misuse"
+          paragraph="Funds are held in a programmatic escrow eliminating the risk of misuse"
           paragraphColor="text-[#042940]"
           titleSize="text-[23px] md:text-[46px]"
           paragraphSize="text-sm md:text-base"
