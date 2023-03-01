@@ -23,9 +23,9 @@ export const CampaingCard = () => {
   const divaContractAddress = "0xFf7d52432B19521276962B67FFB432eCcA609148";
   const { address: activeAddress } = useAccount();
   const [decimals, setDecimals] = useState();
-  const walletAddress = "0x0Aa30E5363f2b432D44e6a40Fc6a6A218dC5B484";
+  const walletAddress = "0x2e33876D29BAC51e1FFD128659BF9D36ba13259D"; // DIVA Fortune multi-sig
   const usdtTokenContract = useERC20Contract(collateralTokenAddress);
-  const poolId = 1;
+  const poolId = 8;
   useEffect(() => {
 
     const checkAllowance = async () => {
@@ -152,7 +152,7 @@ export const CampaingCard = () => {
               <div className="justify-evenly p-[60px] ">
                 <div className="mb-10">
                   <p className="mb-3 font-normal font-['Open_Sans'] text-base text-center text-[#042940]">
-                    Thank you for providing drought insurance to
+                    Thank you for providing livestock insurance to
                     pastoralists in Kenya.
                   </p>
                 </div>

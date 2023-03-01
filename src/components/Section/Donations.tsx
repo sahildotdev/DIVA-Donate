@@ -11,7 +11,7 @@ import {getTokenBalance} from "../../utils/general";
 import {Progress, ProgressLabel, Text} from "@chakra-ui/react";
 
 export default function Donations() {
-    const poolId = 2;
+    const poolId = 8;
     const divaContractAddress = "0xFf7d52432B19521276962B67FFB432eCcA609148";
     const [redeemLoading, setRedeemLoading] = useState(false);
     const [donated, setDonated] = useState<string>('0');

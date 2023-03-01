@@ -21,7 +21,7 @@ export const CampaignSection = () => {
   const collateralTokenAddress = "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
 
   const usdtTokenContract = useERC20Contract(collateralTokenAddress);
-  const poolId = 1;
+  const poolId = 8;
   const handleAddMetaMask = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const token = new ethers.Contract(longToken, ERC20ABI, provider.getSigner())
