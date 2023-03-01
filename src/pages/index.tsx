@@ -10,7 +10,7 @@ import {FooterSection} from "../components/Section/FooterSection";
 export default function Home() {
   return (
     <main className="h-full w-full relative">
-          <div className="invisible hidden sm:visible">
+          <div className="invisible sm:visible sm:">
               <Layout>
                 <HeroSection />
                 <InfoSection />
@@ -19,7 +19,7 @@ export default function Home() {
                 <WorkSection />
               </Layout>
           </div>
-          <div className="justify-center items-center mt-[20rem] items-center sm:invisible">
+          <div className="justify-center items-center -mt-[320rem] items-center sm:invisible sm:hidden">
               <InfoCard
                   cardPadding="p-4 md:p-8"
                   cardWidth="w-auto md:w-full"
