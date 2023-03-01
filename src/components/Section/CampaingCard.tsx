@@ -137,25 +137,23 @@ export const CampaingCard = () => {
                 Fortune DIVA
               </h5>
               <p className="card-text">
-                A conditional donation compaign to provide insurance to farmers
-                against damage caused by insufficient rain in Africa. This
-                campaign aims to support more than 150 farmers across Africa.
+                A conditional donation campaign to provide livestock insurance to 100 pastoralists
+                in Kenya to financially assist them in case of drought.
               </p>
-              <span className="inline-block text-lg text-[#DBF227] align-middle">
-                Expiry: {expiryDate}
+              <span className="inline-block text-2xs text-[#DBF227] align-middle">
+                <b>Expiry:</b> {expiryDate}
               </span>
             </div>
           </div>
         </div>
-        <div className="lg:col-span-5 mr-[2rem]">
+        <div className="lg:col-span-5 mr-[6rem]">
           <div className="  flex-col">
             <div className=" mx-auto pb-12 bg-[#FFFFFF] border border-gray-200 rounded-[26px] drop-shadow-xl ">
               <div className="justify-evenly p-[60px] ">
                 <div className="mb-10">
                   <p className="mb-3 font-normal font-['Open_Sans'] text-base text-center text-[#042940]">
-                    Thank you for getting involved in providing insurance to
-                    farmers against damage caused by insufficient rain in
-                    Africa.
+                    Thank you for providing drought insurance to
+                    pastoralists in Kenya.
                   </p>
                 </div>
 
@@ -210,9 +208,9 @@ export const CampaingCard = () => {
                             placeholder="Amount"
                             className="w-full p-4 pl-10 pr-10 text-lg border border-[#042940] focus:outline-none text-gray-900 rounded-[10px] bg-[rgba(4, 41, 64, 0.24)]"
                         />
-                        <button id="max" onClick={handleMax} className="absolute right-20 top-0 mt-4 mr-6">
+                        {/* <button id="max" onClick={handleMax} className="absolute right-20 top-0 mt-4 mr-6">
                           Max
-                        </button>
+                        </button> */}
                         <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                                 className=" spadisabled absolute right-1 text-white bg-green-900
                               focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex
@@ -230,7 +228,7 @@ export const CampaingCard = () => {
                             </svg>
                           </div>
 
-                          USDT
+                          <div className="text-base">USDT</div>
                           {/*<svg className="w-4 h-4 ml-2" aria-hidden="true"*/}
                           {/*     fill="none" stroke="currentColor" viewBox="0 0 24 24"*/}
                           {/*     xmlns="http://www.w3.org/2000/svg">*/}
