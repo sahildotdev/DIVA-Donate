@@ -19,10 +19,10 @@ export default function Home() {
                 <WorkSection />
               </Layout>
           </div>
-          <div className="pt-[30rem] sm:invisible sm:hidden">
+          <div className="pt-[20rem] sm:invisible sm:hidden">
               <InfoCard
                   cardPadding="p-4 md:p-8"
-                  cardWidth="w-auto md:w-full"
+                  cardWidth="w-auto md:w-full text-center"
                   cardRadius="20px"
                   title="Mobile is currently not supported. Please check on a desktop computer."
                   paragraph=""

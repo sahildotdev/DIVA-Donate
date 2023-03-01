@@ -21,9 +21,9 @@ export const InfoSection = () => (
         alt="Conditional Donation"
       />
 
-      <div className="grid gap-5 lg:gap-[34px] grid-rows-3 pt-7 lg:pt-0">
+      <div className="grid gap-5 lg:gap-[32px] grid-rows-3 pt-7 lg:pt-0">
         <InfoCard
-          cardPadding="p-4 md:p-8"
+          cardPadding=" md:p-8"
           cardWidth="w-auto md:w-full"
           cardRadius="20px"
           title="Targeted"
