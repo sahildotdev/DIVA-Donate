@@ -31,23 +31,6 @@ export const faqData = [
 		),
 	},
 	{
-		title: 'What is DIVA Protocol?',
-		body: (
-			<>					
-					<a
-						href='https://docs.divaprotocol.io/'
-						className='underline mx-1'
-						target={'_blank'} rel="noreferrer">
-					DIVA Protocol
-					</a> is a highly flexible and universal blockchain based operating system
-					to create and settle derivative products.					
-					DIVA Donate is utilizing DIVA Protocol to manage 
-					the donations and their release in a programmatic and predictibale manner, eliminating the need for trusted centralized intermediaries.
-
-			</>
-		),
-	},
-	{
 		title: 'What are conditional donations?',
 		body: (
 			<>
@@ -58,7 +41,8 @@ export const faqData = [
 					area. If it falls below a predefined level that is associated with drought, 
 					the donation will be triggered to financially support the people affected. 
 					If it stays above that level, no donation will be triggered. Conditional donations
-					are comparable to insurance with the difference that former is free of charge for the recipient.
+					are comparable to insurance with the difference that former is free of charge for the recipient
+					and payoff profiles can be non-binary.
 			</>
 		),
 	},
@@ -85,16 +69,34 @@ export const faqData = [
 		),
 	},
 	{
+		title: 'What is DIVA Protocol?',
+		body: (
+			<>					
+					<a
+						href='https://docs.divaprotocol.io/'
+						className='underline mx-1'
+						target={'_blank'} rel="noreferrer">
+					DIVA Protocol
+					</a> is a highly flexible and universal blockchain based operating system
+					to create and settle derivative products.					
+					DIVA Donate is utilizing DIVA Protocol to manage 
+					the donations and their release in a programmatic and predictibale manner, eliminating the need for trusted centralized intermediaries.
+
+			</>
+		),
+	},
+	{
 		title: 'How does it work?',
 		body: (
 			<>
-				Donors can contribute funds to DIVA Protocol in the form of digital stablecoins such as USDT or USDC. 
+				Donors deposit funds into DIVA Protocol in the form of digital stablecoins such as USDT or USDC. 
 				Once the funds are deposited, they are held in a programmatic escrow, and beneficiaries are issued 
-				tokenized contingent claims. At the end of the campaign, the data provider Shamba Network reports to 
-				the DIVA smart contract, which determines the payout based on the specific campaign's payoff profile. 
+				tokenized contingent claims. At the end of the campaign, the data provider reports the outcome to 
+				the DIVA smart contract, which then determines the payout based on the specific campaign's payoff profile. 
 				Beneficiaries can then claim their share of the donation by returning their contingent claim. Donors 
 				can redeem any unused funds and redeploy them into a new conditional donation campaign.
-				The process is fully automated and doesn't involve any central intermediary to custody and manage the funds.
+				Thanks to blockchain technology, the process is fully automated and doesn't involve any central intermediary to custody and manage the funds, 
+				making the donation process cost-efficient and effective.
       		</>
 		),
 	},
@@ -102,58 +104,45 @@ export const faqData = [
 		title: 'How can I start donating?',
 		body: (
 			<>
-				To leverage the full power of the blockchain technology, there is a one-time setup process that users will have 
-				to go through. This involves the following steps:
-				
+				Assuming that you have a browser wallet installed and funded with a stablecoin like USDT or USDC, it's as simple as picking a campaign from our homepage, 
+				entering the amount to donate, pressing the "Donate" button and confirming the transaction in your 
+				browser wallet. Note that you may be asked to "Approve" the transfer first in order to grant DIVA protocol the permission to move
+				the donation asset on your behalf (technical thing).
+				<br></br>
+				<br></br>
+				If you are new to crypto, there is a one-time setup process involved that you will have 
+				to go through in order to move into the blockchain world and leverage its full potential. This involves the following steps:
+				<br></br>
+				<br></br>
 				<ul>
-					<li> > <b>Install Metamask:</b> Metamask is your wallet that will hold your assets and that you will use to initiate transactions on the blockchain. 
-					You can download the Chrome browser extension <a
-					href='https://metamask.io/'
+					<li> > <b>Get wallet:</b> In order to transact on the blockchain, you need to set up the equivalent of a bank account, a so-called wallet.
+					One of the most popular browser wallets is Metamask. You can find a detailed guide <a
+					href='https://wiki.polygon.technology/docs/develop/metamask/hello/'
 					className='underline mx-1'
 					target={'_blank'} rel="noreferrer">
-					here
-				</a>.</li>
-					<li> > <b>Get MATIC:</b> Transacting on the blockchain requires the payment of a small fee amount. As DIVA Donate is running on Polygon, the fee amount
-					is paid in the native MATIC token. Reach out to us and we will send you a bit to save you this step. </li>
-					<li> > <b>Fund your wallet:</b> To participate as a donor in campaigns, you will require a stablecoin such as USDT or USDC. </li>
+					here.
+				</a></li>				
+					<li> > <b>Fund wallet:</b> Moving to the blockchain is like moving into a new country that has their own currency which is used to pay for transaction fees. 					
+					As DIVA Donate is running on Polygon, the first asset you will need are MATIC tokens. To participate as a donor in campaigns, you will also need
+					some stablecoins (most of the time USDT or USDC). The easiest way to acquire both assets is asking friends or via a crypto exchange like 
+					<a
+						href='https://www.binance.com/en'
+						className='underline mx-1'
+						target={'_blank'} rel="noreferrer">
+						here.
+					</a>.</li>					
 				</ul>			
       		</>
 		),
 	},
 	{
-		title: 'Why do I have to approve before donating?',
+		title: 'What is an oracle?',
 		body: (
 			<>
-				In order to donate, 
-				Pick one of the <a
-					href='https://www.divadonate.xyz'
-					className='underline mx-1'
-					target={'_blank'} rel="noreferrer">
-					campaigns
-				</a> page to explore all the
-				applications that have been already built on top of DIVA Protocol.
-				<br></br>
-				<br></br>
-				If you want to develop an application yourself, head over to our <a
-					href='https://docs.divaprotocol.io/'
-					className='underline mx-1'
-					target={'_blank'} rel="noreferrer">
-					docs
-				</a>.		
-      </>
-		),
-	},
-	{
-		title: 'What are the utilities of the $DIVA Token?',
-		body: (
-			<>
-				$DIVA is the native token that is used to govern the DIVA Protocol. The
-				token model was designed to enable efficient and effective governance
-				and offer flexibility to adapt to the various stages of the protocol
-				lifecycle and constantly changing market conditions. There will be a
-				maximum of 100m tokens in circulation. 40% will be released over 2 years
-				and the remaining 60% over 30 years.
-      </>
+				As most of the metrics that are used for the conditional donation campaigns are derived from satellite data, it needs to be
+				bridged into the blockchain world. That's where oracles come in. Their job is to report the requested data point in a reliable
+				way in exchange for a fee.
+      		</>
 		),
 	},
 ]
