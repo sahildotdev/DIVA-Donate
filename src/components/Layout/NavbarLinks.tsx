@@ -12,18 +12,18 @@ const links = [
   },
   {
     to: "/campaign",
-    name: "Campaigns",
+    name: "Pilot Campaign",
   },
   {
-    to: "",
+    to: "/donations",
     name: "My Donations",
   },
+  // {
+  //   to: "",
+  //   name: "My Campaigns",
+  // },
   {
-    to: "",
-    name: "My Campaigns",
-  },
-  {
-    to: "",
+    to: "/faq",
     name: "FAQs",
   },
 ];

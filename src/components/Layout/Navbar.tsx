@@ -11,7 +11,7 @@ export default function NavBar() {
   const { pathname } = useRouter();
 
   return (
-    <nav className="px-2 sm:px-4 py-2.5 fixed z-20 w-full top-0 left-0 bg-[#F3FDF8] border-b-2 border-[#D6D58E]">
+    <nav className="z-10 px-2 sm:px-4 py-2.5 fixed z-20 w-full top-0 left-0 bg-[#F3FDF8] border-b-2 border-[#D6D58E]">
       <div className="justify-between px-4 mx-auto lg:max-w-screen-2xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center outline-none justify-between py-3 md:py-5 md:block">

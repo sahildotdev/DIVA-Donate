@@ -5,6 +5,7 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
+import {ChakraProvider} from "@chakra-ui/react";
 
 const { chains, provider } = configureChains(
   [mainnet, polygon, optimism, arbitrum],
@@ -23,10 +24,12 @@ const wagmiClient = createClient({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains} initialChain={mainnet}>
-        <Component {...pageProps} />
-      </RainbowKitProvider>
-    </WagmiConfig>
+      <ChakraProvider>
+        <WagmiConfig client={wagmiClient}>
+          <RainbowKitProvider chains={chains} initialChain={mainnet}>
+            <Component {...pageProps} />
+          </RainbowKitProvider>
+        </WagmiConfig>
+      </ChakraProvider>
   );
 }

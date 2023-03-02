@@ -12,8 +12,8 @@ export const DonationSection = () => {
 
       <div className="grid items-center justify-center px-4 py-8 lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         <div className="mr-auto lg:col-span-7">
-          <div className="relative rounded-xl overflow-auto p-8">
-            <div className="overflow-visible relative max-w-xl mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
+          <div className=" rounded-xl p-8 ">
+            <div className="pr-[10rem] w-full overflow-visible relative mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
               <Image
                 className="absolute -left-8 w-24 h-24 rounded-full shadow-lg"
                 src="/Images/rain.png"
@@ -25,65 +25,65 @@ export const DonationSection = () => {
                 <strong className="text-[#005C53] font-semibold font-['lora']">
                   Trigger metric
                 </strong>
-                <span className="text-[#042940] text-xl font font-['Open_Sans'] ">
-                  Average NDVI (1 Feb - 31 May 2023)
+                <span className="text-[#042940] text-xl font font-['Open_Sans'] pt-2">
+                  1 + Average NDVI (1 Mar - 31 May 2023)
                 </span>
               </div>
             </div>
           </div>
           <div className="relative rounded-xl overflow-auto p-8">
-            <div className="overflow-visible relative max-w-xl mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
+            <div className="pr-[15rem] w-full overflow-visible relative mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
               <Image
                 className="absolute -left-8 w-24 h-24 rounded-full shadow-lg"
-                src="/Images/rain.png"
+                src="/Images/Expiry.png"
                 width={100}
                 height={100}
                 alt="Trigger metric"
               />
               <div className="flex flex-col text-4xl text-left py-2 pl-24 pr-10">
                 <strong className="text-[#005C53] font-semibold font-['lora']">
-                  Trigger metric
+                  Expiry
                 </strong>
-                <span className="text-[#042940] text-xl font font-['Open_Sans'] ">
-                  Average NDVI (1 Feb - 31 May 2023)
+                <span className="text-[#042940] text-xl font font-['Open_Sans']  pt-2">
+                  11 June 2023, 8:00pm UTC
                 </span>
               </div>
             </div>
           </div>
           <div className="relative rounded-xl overflow-auto p-8">
-            <div className="overflow-visible relative max-w-xl mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
+            <div className="pr-[15rem] w-full overflow-visible relative mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
               <Image
                 className="absolute -left-8 w-24 h-24 rounded-full shadow-lg"
-                src="/Images/rain.png"
+                src="/Images/Reporter.png"
                 width={100}
                 height={100}
                 alt="Trigger metric"
               />
               <div className="flex flex-col text-4xl text-left py-2 pl-24 pr-10">
                 <strong className="text-[#005C53] font-semibold font-['lora']">
-                  Trigger metric
+                  Reporter
                 </strong>
-                <span className="text-[#042940] text-xl font font-['Open_Sans'] ">
-                  Average NDVI (1 Feb - 31 May 2023)
+                <span className="text-[#042940] text-xl font font-['Open_Sans']  pt-2">
+                  Shamba Network
                 </span>
               </div>
             </div>
           </div>
           <div className="relative rounded-xl overflow-auto p-8">
-            <div className="overflow-visible relative max-w-xl mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
+            <div className="pr-[15rem] w-full overflow-visible relative mx-auto shadow-lg ring-1 ring-black/5 rounded-xl flex items-center gap-6 bg-[#DEEFE7] ">
               <Image
                 className="absolute -left-8 w-24 h-24 rounded-full shadow-lg"
-                src="/Images/rain.png"
+                src="/Images/Data.png"
                 width={100}
                 height={100}
                 alt="Trigger metric"
               />
               <div className="flex flex-col text-4xl text-left py-2 pl-24 pr-10">
                 <strong className="text-[#005C53] font-semibold font-['lora']">
-                  Trigger metric
+                  Data source
                 </strong>
-                <span className="text-[#042940] text-xl font font-['Open_Sans'] ">
-                  Average NDVI (1 Feb - 31 May 2023)
+                <span className="text-[#042940] text-xl font font-['Open_Sans']  pt-2">
+                  eVIIRS satellite data
                 </span>
               </div>
             </div>
