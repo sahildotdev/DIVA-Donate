@@ -1,7 +1,7 @@
 'use client';
 import {ethers} from "ethers";
 import {DivaABI, ERC20ABI} from "../../abi";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {useAccount} from "wagmi";
@@ -26,6 +26,22 @@ export default function Donations() {
     const usdtTokenContract = useERC20Contract(collateralTokenAddress);
 
     const [longToken, setLongToken] = useState("");
+    const [chainId, setChainId] = React.useState('0');
+    const handleOpen = () => {
+        window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: "0x89" }],
+        });
+    }
+    useEffect(() => {
+        if (window?.ethereum) {
+            setChainId(window.ethereum.chainId);
+            window.ethereum.on("chainChanged", (chainId) => {
+                setChainId(chainId);
+            });
+        }
+
+    },[typeof window != 'undefined'])
 
     const handleAddMetaMask = async () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -50,7 +66,7 @@ export default function Donations() {
         }
     }
     const getBalance = async () => {
-        if (longToken!= "" && activeAddress != null && typeof window != 'undefined' && typeof window?.ethereum != 'undefined') {
+        if (chainId === '0x89' && longToken!= "" && activeAddress != null && typeof window != 'undefined' && typeof window?.ethereum != 'undefined') {
             const provider = new ethers.providers.Web3Provider(window.ethereum)
             const longContract = new ethers.Contract(longToken, ERC20ABI, provider.getSigner());
             const result = await getTokenBalance(longContract, activeAddress);
@@ -59,19 +75,19 @@ export default function Donations() {
         }
     };
     useEffect(() => {
-        if (activeAddress != null) {
+        if (chainId === '0x89' && activeAddress != null) {
             getBalance();
         }
     }, [activeAddress, longToken]);
     useEffect(() => {
         const getDecimals = async () => {
-            if (usdtTokenContract != null) {
+            if (chainId === '0x89' && usdtTokenContract != null) {
                 const decimals = await usdtTokenContract.decimals();
                 setDecimals(decimals);
             }
         }
         getDecimals();
-        if (activeAddress != null && typeof window != 'undefined' && typeof window?.ethereum != 'undefined') {
+        if (chainId === '0x89' && activeAddress != null && typeof window != 'undefined' && typeof window?.ethereum != 'undefined') {
 
             const provider = new ethers.providers.Web3Provider(window.ethereum)
             const divaContract = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
@@ -228,7 +244,7 @@ export default function Donations() {
                     )}
                 </div>
             </div>
-            </>) : (
+            </>) : ( chainId === '0x89' ? (
             <div className="pb-[23rem] flex flex-col items-center justify-center">
                 <h1 className="font-lora text-[60px]">My Donations</h1>
                 <div className="bg-[#9FC131] w-[200px] text-xs font-medium text-blue-100 text-center p-0.5 leading-none ">{" "}</div>
@@ -241,7 +257,16 @@ export default function Donations() {
                         Explore Campaigns
                     </button>
                 </Link>
-            </div>
+            </div>) : (
+                    <div className="flex flex-col items-center justify-center ">
+                        <h1 className="font-lora text-[60px]">My Donations</h1>
+                        <div className="bg-[#9FC131] w-[200px] text-xs font-medium text-blue-100 text-center p-0.5 leading-none ">{" "}</div>
+                        <div className="flex flex-col items-center justify-center">
+                            Unsupported network, please <button className="text-blue-600" onClick={handleOpen}>Switch</button>{' '}
+                            to Polygon network in your Metamask wallet.
+                        </div>
+                    </div>
+                )
             )}
 
         </div>

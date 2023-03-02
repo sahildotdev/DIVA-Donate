@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ethers} from "ethers";
 import {DivaABI, ERC20ABI} from "../../abi";
 import {formatUnits} from "ethers/lib/utils";
@@ -22,6 +22,22 @@ export const CampaignSection = () => {
 
   const usdtTokenContract = useERC20Contract(collateralTokenAddress);
   const poolId = 8;
+  const [chainId, setChainId] = React.useState('0');
+  const handleOpen = () => {
+    window.ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: "0x89" }],
+    });
+  }
+  useEffect(() => {
+    if (window?.ethereum) {
+      setChainId(window.ethereum.chainId);
+      window.ethereum.on("chainChanged", (chainId) => {
+        setChainId(chainId);
+      });
+    }
+
+  },[typeof window != 'undefined'])
   const handleAddMetaMask = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const token = new ethers.Contract(longToken, ERC20ABI, provider.getSigner())
@@ -46,13 +62,13 @@ export const CampaignSection = () => {
   }
   useEffect(() => {
     const getDecimals = async () => {
-      if (usdtTokenContract != null) {
+      if (chainId === '0x89' && usdtTokenContract != null) {
         const decimals = await usdtTokenContract.decimals();
         setDecimals(decimals);
       }
     }
     getDecimals();
-    if (activeAddress != null && typeof window != 'undefined' && typeof window?.ethereum != 'undefined') {
+    if (chainId === '0x89' && activeAddress != null && typeof window != 'undefined' && typeof window?.ethereum != 'undefined') {
 
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       const divaContract = new ethers.Contract(divaContractAddress, DivaABI, provider.getSigner());
@@ -141,15 +157,16 @@ export const CampaignSection = () => {
               {/*<div className="mb-3 w-full bg-[#D6D58E] rounded-[10px]">*/}
                 {/*<div className='bg-[#005C53] text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full'*/}
                 {/*     style={{width: percentage+'%'}}>*/}
-                <Progress className=" mb-3 rounded-[15px]" style={{background: '#D6D58E'}} colorScheme="green" height='22px' value={percentage} >
-                  <ProgressLabel className="text-2xl flex flex-start">
-                    <Text fontSize="xs">{percentage.toFixed(2)}%</Text>
-                  </ProgressLabel>
-                </Progress>
+              {chainId === '0x89' && <Progress className=" mb-3 rounded-[15px]" style={{background: '#D6D58E'}} colorScheme="green"
+                         height='22px' value={percentage}>
+                <ProgressLabel className="text-2xl flex flex-start">
+                  <Text fontSize="xs">{percentage.toFixed(2)}%</Text>
+                </ProgressLabel>
+              </Progress>}
                 {/*</div>*/}
               {/*</div>*/}
 
-              <div className="grid grid-cols-3 text-center divide-x-[1px] divide-[#005C53] mb-3">
+              {chainId === '0x89' ? (<div className="grid grid-cols-3 text-center divide-x-[1px] divide-[#005C53] mb-3">
                 <div className="flex flex-col items-center justify-center">
                   <dt className="mb-2 font-medium text-xl text-[#042940]">
                     Goal
@@ -174,7 +191,14 @@ export const CampaignSection = () => {
                     ${toGo}
                   </dd>
                 </div>
-              </div>
+              </div>) :(
+                  <div className="mb-10 flex flex-col items-center justify-center ">
+                    <div className="flex flex-col items-center justify-center">
+                      Unsupported network, please <button className="text-blue-600" onClick={handleOpen}>Switch</button>{' '}
+                      to Polygon network in your Metamask wallet.
+                    </div>
+                  </div>
+              )}
               <Link href="/campaign">
                 <button
                   type="button"
