@@ -102,7 +102,7 @@ export default function Donations() {
                 setExpiryDate(new Date(Number(res.expiryTime)*1000).toLocaleDateString(undefined,{ day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', hour12: true, timeZoneName: 'short' }));
             })
         }
-    }, [decimals, balance])
+    }, [chainId, decimals, balance])
     useEffect(() => {
         setPercentage((Number(donated) / balance * 100).toFixed(2));
     }, [donated, balance])

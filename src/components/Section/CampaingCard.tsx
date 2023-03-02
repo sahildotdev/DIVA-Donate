@@ -84,7 +84,7 @@ export const CampaingCard = () => {
         setToGo(Number(formatUnits(res.capacity.sub(res.collateralBalance), decimals)));
       })
     }
-  }, [decimals, donateLoading])
+  }, [chainId, decimals, donateLoading])
   useEffect(() => {
     setPercentage(raised / goal * 100);
   }, [goal, raised, donateLoading])
@@ -147,7 +147,7 @@ export const CampaingCard = () => {
     <div className="container relative pt-[5rem] sm:pt-[8rem] md:pt-[8rem]  mx-auto">
       <div className="grid px-12 gap-[2rem] mx-auto lg:py-16 lg:grid-cols-9">
         <div className="mx-auto lg:mt-0 lg:col-span-4 lg:flex">
-          <div className=" sm-bg-auto bg-cover bg-center bg-no-repeat rounded-[28px] bg-[url('/Images/pastrolists400pxVertical.png')] rounded-lg ">
+          <div className=" sm-bg-auto h-[648px] bg-cover bg-center bg-no-repeat rounded-[18px] bg-[url('/Images/pastrolists400pxVertical.png')] rounded-lg ">
             <div className="p-8 relative top-[28rem] text-[#DEEFE7] ">
               <h5 className="font-semibold text-4xl font-['lora']">
                 Fortune DIVA
@@ -163,9 +163,9 @@ export const CampaingCard = () => {
           </div>
         </div>
         <div className="lg:col-span-5 mr-[6rem]">
-          <div className="  flex-col">
-            <div className=" mx-auto pb-12 bg-[#FFFFFF] border border-gray-200 rounded-[26px] drop-shadow-xl ">
-              <div className="justify-evenly p-[60px] ">
+          <div className="flex-col">
+            <div className=" mx-auto  pb-12 bg-[#FFFFFF] border border-gray-200 rounded-[26px] drop-shadow-xl ">
+              <div className="h-[600px] justify-evenly p-[60px] ">
                 <div className="mb-10">
                   <p className="mb-3 font-normal font-['Open_Sans'] text-base text-center text-[#042940]">
                     Thank you for providing livestock insurance to
