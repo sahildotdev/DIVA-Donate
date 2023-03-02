@@ -142,7 +142,7 @@ export const CampaingCard = () => {
     if (chainId === '0x89' && activeAddress != null) {
       getBalance();
     }
-  }, [activeAddress, donateLoading]);
+  }, [chainId, activeAddress, donateLoading]);
   return (
     <div className="container relative pt-[5rem] sm:pt-[8rem] md:pt-[8rem]  mx-auto">
       <div className="grid px-12 gap-[2rem] mx-auto lg:py-16 lg:grid-cols-9">

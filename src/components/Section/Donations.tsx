@@ -134,7 +134,7 @@ export default function Donations() {
 
 
     return (
-        <div className=" pt-[5rem] sm:pt-[8rem] md:pt-[8rem] my-auto mx-auto px-4">
+        <div className=" pt-[5rem] pb-[200px] sm:pt-[8rem] md:pt-[8rem] my-auto mx-auto px-4">
             {balance != 0 ? (<>
                 <div className="pb-10 flex flex-col items-center justify-center">
                     <h1 className="font-lora text-[60px]">My Donations</h1>
