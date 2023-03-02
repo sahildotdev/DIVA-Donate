@@ -28,7 +28,7 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
         {chainId === '0x89' ? children : (
 <div className="flex flex-col items-center justify-center h-screen">
     <div className="flex flex-col items-center justify-center">
-        Unsupported network, please <button onClick={handleOpen}>Switch</button>{' '}
+        Unsupported network, please <button className="text-blue-600" onClick={handleOpen}>Switch</button>{' '}
         to Polygon network in your Metamask wallet.
     </div>
 </div>
