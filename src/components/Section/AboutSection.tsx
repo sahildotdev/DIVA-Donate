@@ -11,12 +11,16 @@ export const AboutSection = () => (
           </h1>
           <ul className="list-none font-[Open Sans] text-base font-normal mb-8 ">
             <li>
-              {" "}
-              The campaign is a collaborative effort between Fortune Connect, DIVA Technologies AG and 
-              Shamba network to financially assist pastoralists in the Eastern Horn 
-              of Africa in the event of drought, as measured by the Normalized Difference Vegetation Index (NDVI). <a
+              {" "}             
+              The campaign is a joint initiative by Fortune Connect, DIVA Technologies AG, 
+              and Shamba Network aimed at providing financial assistance to pastoralists in 
+              Kenya during droughts. The region regularly experiences droughts due to 
+              climate change and extreme weather conditions, resulting in reduced 
+              agricultural production, destroyed crops, and significant losses in livestock.
+              {" "}<a
               href="https://www.divaprotocol.io/posts/diva-conditional-donations"
               className="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700"
+              target={'_blank'} rel="noreferrer"
             >
               Learn more
             </a>
@@ -49,14 +53,19 @@ export const AboutSection = () => (
             Trigger metric
           </div>
           <ul className="list-disc mb-8">
-            The average Normalized Difference Vegetation Index (NDVI), observed during the period 1 March - 31 May 2023, 
-            will serve as the trigger metric and reported by the Shamba oracle on 11th June (for technical reasons shifted by 1). 
-            It is a widely used metric which is calculated from satellite data to measure vegetation. 
-            Higher values indicate a greater density of healthy vegetation, while lower values indicate 
-            that plants in an area are experiencing drought stress. {" "}
+            The Normalized Difference Vegetation Index (NDVI) is a commonly used metric to assess drought 
+            conditions in an area by measuring vegetation density and health. It is calculated from satellite 
+            images based on the near-infrared and red light reflectance of an area. Its values range from -1 to 1, 
+            with higher values indicating healthier vegetation and lower values indicating drought stress.
+            <br></br>
+            <br></br>
+            For this campaign, the average NDVI observed between 1st March and 31th May 2023 will be used and 
+            reported by the Shamba oracle on 11th June to ensure full data coverage of the observation period. 
+            The NDVI will be shifted by 1 for technical reasons.{" "}
             <a
               href="https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index"
               className="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700"
+              target={'_blank'} rel="noreferrer"
             >
               Learn more
             </a>
@@ -64,7 +73,7 @@ export const AboutSection = () => (
           <div className="font-semibold text-2xl font-['lora'] text-[#042940] m-auto leading-normal mb-2">
             Donation scenarios
           </div>
-          <p className="pb-4">The following percentages of the donated USDT amount will be released depending on the reported metric:</p>
+          <p className="pb-4">The following percentages of the deposited USDT amount will be released depending on the reported metric:</p>
           <ul
             role="list"
             className="list-disc marker:text-[#000000] list-disc pl-5 space-y-3  mb-2"
@@ -74,19 +83,19 @@ export const AboutSection = () => (
               <a className="font-bold" target="_blank">
                 100% {" "}
               </a>
-              if (NDVI) is at or below 1.20
+              - if the trigger metric is at or below 1.200
             </li>
             <li>
               <a className="font-bold" target="_blank">
                 50% {" "}
               </a>{" "}
-              if NDVI is at 1.215
+              - if the trigger metric is at 1.215
             </li>
             <li>
               <a className="font-bold" target="_blank">
                 0%{" "}
               </a>{" "}
-              if NDVI is at or above 1.23
+              - if the trigger metric is at or above 1.230
             </li>
           </ul>
         </div>
