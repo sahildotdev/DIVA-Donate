@@ -264,8 +264,8 @@ export default function Donations() {
                     <div className="flex flex-col items-center justify-center ">
                         <h1 className="font-lora text-[60px]">My Donations</h1>
                         <div className="bg-[#9FC131] w-[200px] text-xs font-medium text-blue-100 text-center p-0.5 leading-none ">{" "}</div>
-                        <div className="flex flex-col items-center justify-center">
-                            Please <span><button className="text-blue-600" onClick={handleOpen}>connect</button></span>{' '}
+                        <div className="pt-10 flex items-center justify-center">
+                            Please {" "}<span><button className="p-2 text-blue-600" onClick={handleOpen}>{' '}connect</button></span>{' '}
                             to the Polygon network.
                         </div>
                     </div>

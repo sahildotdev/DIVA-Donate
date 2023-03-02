@@ -193,9 +193,9 @@ export const CampaignSection = () => {
                 </div>
               </div>) :(
                   <div className="mb-10 flex flex-col items-center justify-center ">
-                    <div className="flex flex-col items-center justify-center">
-                      Unsupported network, please <button className="text-blue-600" onClick={handleOpen}>Switch</button>{' '}
-                      to Polygon network in your Metamask wallet.
+                    <div className=" flex items-center justify-center">
+                      Please {" "}<span><button className="p-2 text-blue-600" onClick={handleOpen}>{' '}connect</button></span>{' '}
+                      to the Polygon network.
                     </div>
                   </div>
               )}
