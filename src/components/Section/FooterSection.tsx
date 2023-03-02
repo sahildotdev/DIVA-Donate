@@ -23,12 +23,12 @@ export const FooterSection = () => (
             </a>
           </li>
           <li>
-            <a href="" className="hover:underline">
-              Campaigns
+            <a href="campaign" className="hover:underline">
+              Pilot Campaign
             </a>
           </li>
           <li>
-            <a href="" className="hover:underline">
+            <a href="donations" className="hover:underline">
               My Donations
             </a>
           </li>
@@ -38,7 +38,7 @@ export const FooterSection = () => (
           {/*  </a>*/}
           {/*</li>*/}
           <li>
-            <a href="" className="hover:underline">
+            <a href="faq" className="hover:underline">
               FAQs
             </a>
           </li>

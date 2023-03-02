@@ -94,7 +94,7 @@ export const faqData = [
 			<>
 				Donors deposit funds into DIVA Protocol in the form of digital stablecoins such as USDT or USDC. 
 				Once the funds are deposited, they are held in a programmatic escrow, and beneficiaries are issued 
-				tokenized contingent claims. At the end of the campaign, the data provider reports the outcome to 
+				tokenized contingent claims on the deposited funds. At the end of the campaign, the data provider reports the outcome to 
 				the DIVA smart contract, which then determines the payout based on the specific campaign's payoff profile. 
 				Beneficiaries can then claim their share of the donation by returning their contingent claim. Donors 
 				can redeem any unused funds and redeploy them into a new conditional donation campaign.
@@ -107,32 +107,34 @@ export const faqData = [
 		title: 'How can I start donating?',
 		body: (
 			<>
-				Assuming that you have a browser wallet installed and funded with a stablecoin like USDT or USDC, it's as simple as picking a campaign from our homepage, 
-				entering the amount to donate, pressing the "Donate" button and confirming the transaction in your 
-				browser wallet. Note that you may be asked to "Approve" the transfer first in order to grant DIVA protocol the permission to move
-				the donation asset on your behalf (technical thing).
+				Participating in a campaign is simple if you have a browser wallet already funded with USDT and MATIC on Polygon. 
+				Just visit the campaign page, enter the amount you wish to donate, press the "Donate" button, 
+				and confirm the transaction in your browser wallet. Note that you may be asked to "Approve" the 
+				transfer first in order to grant DIVA protocol the permission to move the donation asset on your behalf.				
 				<br></br>
 				<br></br>
-				If you are new to crypto, there is a one-time setup process involved that you will have 
-				to go through in order to move into the blockchain world and leverage its full potential. This involves the following steps:
+				For those new to crypto, there is a one-time setup process to go through to set up a wallet and 
+				convert your local currency into crypto assets in order to move into the blockchain world and start 
+				leveraging its full potential. This involves the following steps:
 				<br></br>
 				<br></br>
 				<ul>
-					<li> > <b>Get wallet:</b> In order to transact on the blockchain, you need to set up the equivalent of a bank account, a so-called wallet.
-					One of the most popular browser wallets is Metamask. You can find a detailed guide <a
+					<li> > <b>Get wallet:</b> In order to transact on the blockchain, you need to install an application, a so-called wallet, 
+					that allows you to create accounts and initiate transactions.
+					One of the most popular browser wallets is Metamask. You can find a detailed installation guide <a
 					href='https://wiki.polygon.technology/docs/develop/metamask/hello/'
 					className='underline mx-1'
 					target={'_blank'} rel="noreferrer">
 					here.
 				</a></li>				
-					<li> > <b>Fund wallet:</b> Moving to the blockchain is like moving into a new country that has their own currency which is used to pay for transaction fees. 					
-					As DIVA Donate is running on Polygon, the first asset you will need are MATIC tokens. To participate as a donor in campaigns, you will also need
-					some stablecoins (most of the time USDT or USDC). The easiest way to acquire both assets is asking friends or via a crypto exchange like 
+					<li> > <b>Fund wallet:</b> Moving to the blockchain is like moving into a new country with their own currency.
+					As DIVA Donate is running on the Polygon network, the first asset you will need are MATIC tokens in order to cover transaction fees. To participate as a donor in campaigns, you will also need
+					some USDT. The easiest way to acquire crypto assets is asking friends or using a 
 					<a
-						href='https://www.binance.com/en'
+						href='https://www.coinbase.com/'
 						className='underline mx-1'
 						target={'_blank'} rel="noreferrer">
-						here
+						crypto exchange
 					</a>.</li>					
 				</ul>			
       		</>
@@ -142,9 +144,11 @@ export const faqData = [
 		title: 'What is an oracle?',
 		body: (
 			<>
-				As most of the metrics that are used for the conditional donation campaigns are derived from satellite data, it needs to be
-				bridged into the blockchain world. That's where oracles come in. Their job is to report the requested data point in a reliable
-				way in exchange for a fee.
+				An oracle in the blockchain world is a service that provides real-world data to a blockchain-based smart contract
+				like DIVA Protocol. 
+				It retrieves and verifies data from external sources, then sends it to the blockchain for use in executing 
+				the terms of the smart contract. Oracles can be centralized or decentralized, with latter
+				being more secure but potentially more difficult to implement and more costly.
       		</>
 		),
 	},
