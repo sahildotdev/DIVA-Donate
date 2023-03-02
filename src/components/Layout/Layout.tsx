@@ -12,6 +12,7 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
     }
     useEffect(() => {
         if (window?.ethereum) {
+            setChainId(window.ethereum.chainId);
             window.ethereum.on("chainChanged", (chainId) => {
                 console.log(window.ethereum.chainId)
                 setChainId(chainId);
