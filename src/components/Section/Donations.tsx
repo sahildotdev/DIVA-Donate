@@ -38,10 +38,13 @@ export default function Donations() {
             setChainId(window.ethereum.chainId);
             window.ethereum.on("chainChanged", (chainId) => {
                 setChainId(chainId);
+                if (chainId !='0x89') {
+                    setBalance(0);
+                }
             });
         }
 
-    },[typeof window != 'undefined'])
+    },[balance, typeof window != 'undefined'])
 
     const handleAddMetaMask = async () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -78,7 +81,7 @@ export default function Donations() {
         if (chainId === '0x89' && activeAddress != null) {
             getBalance();
         }
-    }, [activeAddress, longToken]);
+    }, [chainId, activeAddress, longToken]);
     useEffect(() => {
         const getDecimals = async () => {
             if (chainId === '0x89' && usdtTokenContract != null) {
@@ -132,7 +135,7 @@ export default function Donations() {
 
     return (
         <div className=" pt-[5rem] sm:pt-[8rem] md:pt-[8rem] my-auto mx-auto px-4">
-            {balance ? (<>
+            {balance != 0 ? (<>
                 <div className="pb-10 flex flex-col items-center justify-center">
                     <h1 className="font-lora text-[60px]">My Donations</h1>
                     <div className="bg-[#9FC131] w-[200px] text-xs font-medium text-blue-100 text-center p-0.5 leading-none ">{" "}</div>

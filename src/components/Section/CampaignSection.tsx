@@ -98,7 +98,7 @@ export const CampaignSection = () => {
           <hr className="w-48 h-[8px] mx-auto bg-[#9FC131] border-0 rounded-[20px] mt-5" />
         </div>
         <div className="flex flex-row gap-10 justify-center ">
-          <div className="max-w-sm min-h-[800px] mb-10 bg-[#DEEFE7] border border-gray-200 rounded-[16px] shadow-md ">
+          <div className="max-w-sm mb-10 bg-[#DEEFE7] border border-gray-200 rounded-[16px] shadow-md ">
             <a href="#">
               <Image
                 className="w-full rounded-t-[16px] object-cover"
