@@ -158,10 +158,9 @@ export const CampaingCard = () => {
                 </div>
 
                 <div className="mb-10 w-full bg-[#D6D58E] rounded-[10px]">
-                  <div className="bg-[#005C53] text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full"
+                  <div className="bg-[#005C53] text-xs font-medium text-blue-100 p-0.5 leading-none rounded-l-full"
                        style={{width: percentage+'%'}}>
-                    {" "}
-                    {percentage.toFixed(2)}%
+                    <div className="m-auto flex">{percentage.toFixed(2)}%</div>
                   </div>
                 </div>
 
